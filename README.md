@@ -51,6 +51,11 @@ use. All fields have been renamed to use the single prefix `copernicus:`. See th
 
 ## Fields
 
+> [!TIP]
+> 🔍 **Interactive field explorer:** filter by source extension with a drop-down list and
+> fuzzy-search field names at
+> **[j-musial.github.io/copernicus](https://j-musial.github.io/copernicus/)**.
+
 The fields in this extension can be used in these parts of STAC documents:
 
 - Catalogs
