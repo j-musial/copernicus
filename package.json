@@ -1,0 +1,19 @@
+{
+  "name": "copernicus-stac-extension",
+  "version": "0.1.0",
+  "description": "Unified STAC extension for Copernicus programme data, merging 31 STAC extensions under a single copernicus: prefix.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-musial/copernicus.git"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "npm run check-markdown && npm run check-examples",
+    "check-markdown": "remark . -f --quiet --frail",
+    "check-examples": "stac-node-validator examples/item.json examples/collection.json"
+  },
+  "devDependencies": {
+    "remark-cli": "^11.0.0",
+    "stac-node-validator": "^1.3.0"
+  }
+}
