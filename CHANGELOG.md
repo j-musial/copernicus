@@ -42,11 +42,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - [web-map-links](https://github.com/stac-extensions/web-map-links)
   - [xarray-assets](https://github.com/stac-extensions/xarray-assets)
   - [eopf-stac-extension](https://github.com/CS-SI/eopf-stac-extension)
-- 132 fields under the `copernicus:` prefix, defined across Item Properties,
+- 134 fields under the `copernicus:` prefix, defined across Item Properties,
   Assets, Links, Bands, Collections, and Catalogs.
 - Single merged JSON Schema (draft-07) including storage platform sub-schemas
   (aws-s3, custom-s3, ms-azure).
 - Example [Item](examples/item.json) and [Collection](examples/collection.json).
+- Harvested specification text of all 31 source extensions in
+  [docs/sources/](docs/sources/README.md), named `<extension>-<version>.md`, with
+  field names rewritten to `copernicus:` equivalents and relative links pointing
+  to the upstream repositories.
 - Conflict resolution for name collisions:
   - `grid:code` → `copernicus:grid_code` and `proj:code` → `copernicus:code`
   - `order:status` → `copernicus:order_status` and `product:status` → `copernicus:product_status`

@@ -1,0 +1,336 @@
+<!--
+Harvested from https://github.com/stac-extensions/render (v2.1.0) on 2026-11-13 for the
+Copernicus STAC Extension. Field names have been rewritten to their
+copernicus: equivalents — see the field mapping table in the main README.
+Upstream license: Apache-2.0.
+-->
+
+# Render (v2.1.0)
+
+- **Source repository:** [stac-extensions/render](https://github.com/stac-extensions/render)
+- **Upstream version:** v2.1.0
+- **Upstream schema:** <https://stac-extensions.github.io/render/v2.1.0/schema.json#>
+- **License:** Apache-2.0
+
+The following is the specification text of the *Render* extension as merged into
+the Copernicus STAC Extension. All field names below use the `copernicus:` prefix.
+
+---
+
+- **Title:** Rendering
+- **Identifier:** <https://stac-extensions.github.io/render/v2.1.0/schema.json>
+- **Field Name Prefix:** copernicus:renders
+- **Scope:** Item, Collection
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Pilot
+- **Owner**: @emmanuelmathot @abarciauskas-bgse @smohiudd
+
+This document explains the Rendering Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
+
+Rendering extension aims at providings consumers with the possible rendering of an item or a collection (e.g. on a online map)
+
+- Examples:
+  - [Landsat-8 example](https://github.com/stac-extensions/render/blob/main/examples/item-landsat8.json): Shows the basic usage of the extension in a landsat-8 STAC Item
+  - [Sentinel-2 example](https://github.com/stac-extensions/render/blob/main/examples/item-sentinel2.json): Shows the basic usage of the extension in a Sentinel-2 STAC Item
+  - [Planet example](https://github.com/stac-extensions/render/blob/main/examples/item-planet.json): Shows `bidx` selecting named bands from a single multi-band asset
+  - [Collection example](https://github.com/stac-extensions/render/blob/main/examples/collection.json): Shows the basic usage of the extension in a collection
+- [JSON Schema](https://github.com/stac-extensions/render/blob/main/json-schema/schema.json)
+- [Changelog](https://github.com/stac-extensions/render/blob/main/CHANGELOG.md)
+
+### Fields
+
+The fields in the table below can be used in these parts of STAC documents:
+
+- [ ] Catalogs
+- [x] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [ ] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
+- [ ] Links
+
+| Field Name | Type                                         | Description                                                                               |
+| ---------- | -------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| copernicus:renders    | Map<string, [Render Object](#render-object)> | **REQUIRED**. Dictionary of rendering objects that can be viewed, each with a unique key. |
+
+#### Render Object
+
+| Field Name    | Type      | Description                                                                                                                                                              |
+| ------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| assets        | \[string] | **REQUIRED**. Array of asset keys [referencing the assets](#assets-reference) that are used to make the rendering                                                        |
+| title         | string    | Optional title of the rendering                                                                                                                                          |
+| rescale       | \[float]  | 2 dimensions array of delimited Min,Max range per band. If not provided, the data will not be rescaled.                                                                  |
+| nodata        | float, string     | Nodata value to use for this render, overriding any nodata value already defined on the referenced assets (e.g. via the [raster](https://github.com/stac-extensions/raster) extension). If not set, implementations SHOULD fall back to the asset's own nodata value. |
+| colormap_name | string    | Color map identifier that must be applied for a raster band                                                                                                              |
+| colormap      | object    | [Color map JSON definition](https://developmentseed.org/titiler/user_guide/rendering/#custom-colormaps) that must be applied for a raster band                             |
+| color_formula | string    | [Color formula](https://developmentseed.org/titiler/user_guide/rendering/#color-formula) that must be applied for a raster band                                            |
+| resampling    | string    | Resampling algorithm to apply to the referenced assets. See [GDAL resampling algorithm](https://gdal.org/programs/gdalwarp.html#cmdoption-gdalwarp-r) for some examples. |
+| expression    | string, object, array | Band arithmetic formula to apply to the referenced assets. The format is defined by the rendering application, e.g. a [TiTiler](https://developmentseed.org/titiler/) band math string or a [MapLibre](https://maplibre.org/maplibre-style-spec/expressions/) style expression array. |
+| minmax_zoom   | \[int]    | Zoom levels range applicable for the visualization                                                                                                                       |
+| bidx          | \[\[int, string]] | Band(s) to select from each referenced asset, one entry per position in `assets` (an asset needing no sub-selection uses an empty array `[]`). Each selector is either a 1-based band index (matching the GDAL/rio-tiler/titiler convention) or a band name matching the `name` of a Band Object declared on that asset (via `bands`, `bands`, or the STAC [common `bands`](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#bands) construct) — useful since `name` is not required on a Band Object. See [Band references](#band-references). |
+| asset_as_band | boolean   | Treat assets in `expression` as single bands. Required when expression uses multiple assets           |
+
+The `render` object is open ended, so additional fields can be provided according to the needs of the rendering application.
+
+### Assets reference
+
+The `assets` field is a list of asset keys referencing the assets that are used to make the rendering.
+The assets MUST be local assets defined in the same item.
+
+> \[!NOTE]
+> When it is intended to use assets from external items or specific bands in an asset,
+> it is recommended to define a [virtual asset](https://github.com/stac-extensions/virtual-assets)
+> and then reference its key in the `assets` field. See the [NDVI example](#normalized-difference-vegetation-index-ndvi-example).
+
+### Positioning
+
+The positioning of the source assets is defined by their position in the `assets` array.
+Typically, in the case of the composition of a RGB image, the first pointer would be the red band,
+the second the green band and the third the blue band.
+
+```json
+"assets": [ "red", "green", "blue" ]
+```
+
+### Band references
+
+When one or more of the referenced `assets` is itself a multi-band raster, `bidx` selects which band(s) of
+each asset to use.
+
+`bidx` is an array with **one entry per position in `assets`** (`bidx.length` MUST equal `assets.length`),
+where each entry is itself an array of the band selector(s) for that asset, in output order. An asset that
+needs no sub-selection (e.g. it is already single-band, or all its bands should be used in their existing
+order) uses an empty array `[]`. Note that JSON Schema cannot enforce the `bidx.length == assets.length` rule
+itself; it is a MUST, not a validated constraint.
+
+Each selector is either:
+
+- a 1-based band index (an integer `>= 1`, matching the GDAL/rio-tiler/titiler convention), with no required
+  correspondence to any STAC band metadata — only meaningful if you already know how that asset's bands are
+  physically ordered; or
+- a band name, which MUST match the `name` of a
+  [Band Object](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#bands)
+  declared on that asset, whether via its `bands`, `bands`, or the STAC 1.1+ common `bands`
+  construct (all three use the same `name` property). This ties the reference to metadata already present in
+  the Item or Asset, rather than to an implementation's internal band ordering. Since `name` is not a required
+  property of a Band Object, a name-based selector is only usable when the asset's bands actually declare one
+  — fall back to an index otherwise.
+
+```json
+"assets": [ "B04", "stacked" ],
+"bidx": [ [], [ 3, "nir" ] ]
+```
+
+Here, `B04` is used as-is (empty array: no sub-selection needed), while two bands are selected from the
+multi-band `stacked` asset: its 3rd band by index, and the band named `nir`.
+
+> **Warning:**
+> Band indexes are **1-based**: the first band of an asset is `1`, not `0`. This is different from the
+> 0-based position of a Band Object in the asset's `bands` array. Thus, the band at `bands[2]` has the index
+> `3`. The JSON Schema rejects `0`, but it cannot detect an off-by-one error for other values.
+
+In v2.x and earlier, `bidx` was a flat array of numbers (e.g. `"bidx": [1]`) that was not tied to a specific
+asset. This form is no longer valid. Change it to one inner array per asset, e.g. `"bidx": [[1]]` for a single
+asset.
+
+See the [Planet example](https://github.com/stac-extensions/render/blob/main/examples/item-planet.json) for a realistic case: PlanetScope's 8-band analytic
+product is delivered as a single multi-band GeoTIFF asset (unlike Sentinel-2/Landsat-8, which split each band
+into its own asset), so `bidx` is the only way to select, say, a true-color RGB composite from it:
+
+```json
+"assets": [ "analytic" ],
+"bidx": [ [ "red", "green", "blue" ] ]
+```
+
+A renderer that only accepts a numeric, per-asset band index (e.g. titiler's inline
+`assets=<name>|bidx=<i1>,<i2>` syntax, which replaced its older flat, non-per-asset `bidx` query parameter for
+the same reason `bidx` here is now per-asset) resolves a name-based selector to a 1-based index by looking up
+its position in that asset's own band metadata:
+
+```text
+assets=B04&assets=stacked|bidx=3,5
+```
+
+(assuming `red` and `nir` are, respectively, the 3rd and 5th band declared on the `stacked` asset). Titiler
+also accepts an inline `|bands=<name1>,<name2>` option; consult the target renderer's documentation for
+whether it can resolve band names directly, or whether a client must perform this lookup itself.
+
+### Rescaling
+
+A rescaling of the values from the source asset(s) to the destination asset can be defined using the `vrt:rescale` field.
+It is specified as a 2 dimensions array of delimited Min,Max range per band.
+
+```json
+"rescale": [
+  [0, 10000], // band 1
+  [0, 10000], // band 2
+  [0, 10000]  // band 3
+]
+```
+
+A prescaling can also be performed according to the `offset` and `scale` fields value of the
+[raster](https://github.com/stac-extensions/raster) extension.
+
+### Dynamic tile servers integration
+
+The render objects are designed to be used by dynamic tile servers to produce RGB tiles from a STAC Item.
+They are generic enough to be used by any dynamic tile server. In the following sections, some tilers integration are described.
+
+#### Titiler
+
+[titiler](https://github.com/developmentseed/titiler) offers a native
+[STAC reader](https://github.com/developmentseed/titiler/blob/main/docs/src/endpoints/stac.md).
+
+The following table describes the titiler query parameters that could be used and the corresponding extension fields.
+
+Either the client building titiler url can use the information in the virtual asset to build the query parameters
+or the dynamic tile server could use the information in the virtual asset to build the query parameters
+by simply specifying the `url` and `assets` query parameters.
+
+| Query key       | field                                  | Description                                                                                                                         |
+| --------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `url`           | `href` in item self link               | STAC Item URL                                                                                                                       |
+| `assets`        | `assets`                               | Assets keys to use for the tile rendering defined in the `assets` field                                                             |
+| `rescale`       | `rescale`                              | Delimited Min,Max bounds defined in `rescale` field.                                                                                |
+| `expression`    | `expression`                           | Band arithmetic formula as defined in field `expression`                                                                            |
+| `nodata`        | `nodata` or `nodata` `bands`    | If not provided in `nodata` field, the nodata value can be read from the `nodata` field of the corresponding `bands` object. |
+| `unscale`       | `scale` and `offset` in `bands` | Scale and Offset value defined in `scale` and `offset` fields of the corresponding `bands` item                              |
+| `colormap_name` | `colormap_name`                        | Color map name defined in `colormap` field of the `asset`                                                                           |
+| `colormap`      | `colormap`                             | Color map JSON definition as defined in `colormap` object of the `asset` (overrides `colormap_name` if present )                    |
+| `color_formula` | `color_formula`                        | Color formula as defined in `color_formula` field of the `asset`                                                                    |
+| `resampling`    | `resampling`                           | Resampling method to use when reprojecting the raster.                                                                              |
+| `assets=<name>\|bidx=<i1>,<i2>` (or the legacy `bidx` param) | `bidx`, resolving any name-based selector to a 1-based index via the asset's band metadata | Per-asset dataset band indexes. See [Band references](#band-references). |
+| `asset_as_band` | `asset_as_band`                        | Required when expression uses multiple single-band assets              |
+
+##### Shortwave Infra-red visual thermal signature example
+
+From the [Sentinel-2 item](https://github.com/stac-extensions/render/blob/main/examples/item-sentinel2.json):
+
+```json
+"properties":{
+  "copernicus:renders":{
+    "sir":
+    {
+      "title": "Shortwave Infra-red",
+      "assets": [ "B12", "B08", "B04" ],
+      "rescale": [[0,5000],[0,7000],[0,9000]],
+      "resampling": "nearest"
+    }
+  }
+}
+```
+
+| Query key | value                                               | Example value                                                                                |
+| --------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| url       | STAC Item URL                                       | `https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json` |
+| assets    | Assets keys defined in the `assets` fields          | `B12,B08,B04`                                                                                |
+| rescale   | Delimited Min,Max bounds defined in `rescale` field | `0,5000,0,7000,0,9000`                                                                       |
+
+Example URL, using a self-hosted or public [titiler](https://github.com/developmentseed/titiler) instance
+(the `assets` and `rescale` parameters are repeated, one per band):
+
+```text
+https://<titiler-endpoint>/stac/bbox/13.86148243891681,36.95257399124932,15.111074610520053,37.94752813015372/512x512.png?url=https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json&assets=B12&assets=B08&assets=B04&resampling_method=nearest&rescale=0,5000&rescale=0,7000&rescale=0,9000&return_mask=true
+```
+
+**Result**: Lava thermal signature of Mount Etna eruption (February 2021)
+
+![etna](https://github.com/stac-extensions/render/blob/main/images/etna.png)
+
+##### Normalized Difference Vegetation Index (NDVI) example
+
+From the [Sentinel-2 item](https://github.com/stac-extensions/render/blob/main/examples/item-sentinel2.json):
+This example uses the [virtual assets](https://github.com/stac-extensions/virtual-assets) to define the NDVI asset first because in this use case,
+the NDVI asset could also be downloaded as a standalone asset.
+
+```json
+"assets":{
+  "ndvi": 
+  {
+    "roles": [ "virtual", "data", "index" ],
+    "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+    "href": "https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json#/assets/ndvi",
+    "vrt:hrefs": [
+      { "key": "B04", "href": "https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json#/assets/B04"}, 
+      { "key": "B08", "href": "https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json#/assets/B08"}],
+    "title": "Normalized Difference Vegetation Index",
+    "vrt:algorithm": "band_arithmetic",
+    "vrt:algorithm_opts": {
+      "expression": "(B08-B04)/(B08+B04)",
+      "rescale": [[-1,1]]
+    },
+  }
+},
+"properties":{
+  "copernicus:renders":{
+    "ndvi":
+    {
+      "title": "Normalized Difference Vegetation Index",
+      "assets": [ "ndvi" ],
+      "resampling": "average",
+      "colormap_name": "ylgn"
+    }
+  }
+}
+
+```
+
+If this case, the parameters to titiler must be extracted from both the virtual asset definition and the render object.
+
+| Query key         | value                                                                            | Example value                                                                                |
+| ----------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------|
+| url               | STAC Item URL                                                                    | `https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json` |
+| assets            | Assets used in the expression, in the order they are referenced                 | `B08,B04`                                                                                      |
+| expression        | Band math formula as defined in field `vrt:algorithm`                            | `(B08-B04)/(B08+B04)`                                                                         |
+| rescale           | Delimited Min,Max bounds defined in `rescale` field                              | `-1,1`                                                                                        |
+| colormap_name     | Color map name as defined in `colormap_name`                                     | `ylgn`                                                                                        |
+| resampling_method | Resampling method to use when reprojecting the raster as defined in `resampling` | `average`                                                                                     |
+
+Example URL, using a self-hosted or public [titiler](https://github.com/developmentseed/titiler) instance.
+titiler combines multiple `assets` positionally, so the `expression` sent to titiler must reference them as
+`b1`, `b2`, ... in the order given by `assets` (here `b1` = `B08`, `b2` = `B04`), rather than by their asset names:
+
+```text
+https://<titiler-endpoint>/stac/preview.png?url=https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json&assets=B08&assets=B04&expression=(b1-b2)/(b1%2Bb2)&max_size=512&width=512&resampling_method=average&rescale=-1,1&colormap_name=ylgn&return_mask=true
+```
+
+**Result**: Sentinel-2 Normalized Difference Vegetation Index (NDVI), tile 33SVB (Sicily, Italy).
+
+![ndvi](https://github.com/stac-extensions/render/blob/main/images/ndvi.png)
+
+Obviously, the same rendering can be applied to local source assets without using the virtual asset.
+
+```json
+"properties":{
+  "copernicus:renders":{
+    "ndvi":
+    {
+      "title": "Normalized Difference Vegetation Index",
+      "assets": [ "B08", "B04" ],
+      "resampling": "average",
+      "colormap_name": "ylgn",
+      "expression": "(B08-B04)/(B08+B04)",
+      "rescale": [[-1,1]]
+    }
+  }
+}
+```
+
+### Links
+
+It is highly suggested to have a web map link in the `links` section of the STAC Item as described in the
+[Web Map Link extension](https://github.com/stac-extensions/web-map-links) to allow application to
+find the tiling endpoint of the dynamic tile server.
+
+#### Additional Attributes
+
+A [web map link](https://github.com/stac-extensions/web-map-links) can be extended with the attribute `render`
+with a value corresponding to the key of the render object in the `copernicus:renders` field
+in order to provide a cross link to the render object.
+
+```json
+{
+  "rel": "xyz",
+  "type": "image/png",
+  "title": "NDVI",
+  "href": "https://<titiler-endpoint>/stac/preview.png?url=https://raw.githubusercontent.com/stac-extensions/render/main/examples/item-sentinel2.json&assets=B08&assets=B04&expression=(b1-b2)/(b1%2Bb2)&max_size=512&width=512&resampling_method=average&rescale=-1,1&colormap_name=ylgn&return_mask=true",
+  "render": "ndvi"
+}
+```

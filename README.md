@@ -62,7 +62,7 @@ The fields in this extension can be used in these parts of STAC documents:
 
 ### Master table (alphabetical)
 
-All `132` fields defined by this extension, sorted alphabetically.
+All `134` fields defined by this extension, sorted alphabetically.
 
 | Field | Type | Applies To | Source Extension(s) | Description |
 |-------|------|------------|---------------------|-------------|
@@ -175,6 +175,8 @@ All `132` fields defined by this extension, sorted alphabetically.
 | `copernicus:stats_collections` | object | Collections, Catalogs | [Stats](https://github.com/stac-extensions/stats) | A lookup of statistics for all child collections. |
 | `copernicus:stats_items` | object | Collections, Catalogs | [Stats](https://github.com/stac-extensions/stats) | A lookup of statistics for all child items. |
 | `copernicus:storage_options` | object | Collections, Item Properties, Assets | [Table](https://github.com/stac-extensions/table), [Xarray Assets](https://github.com/stac-extensions/xarray-assets) | **DEPRECATED** Additional keywords for opening the dataset. |
+| `copernicus:storage_refs` | array of string | Catalogs, Collections, Item Properties, Assets, Links | [Storage](https://github.com/stac-extensions/storage) | A property that specifies which schemes in copernicus:storage_schemes may be used to access an Asset or Link. Each value must be one of the keys defined in copernicus:storage_schemes. |
+| `copernicus:storage_schemes` | map of objects | Catalogs, Collections, Item Properties, Assets, Links | [Storage](https://github.com/stac-extensions/storage) | A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection. |
 | `copernicus:stride` | array of integer | Collections, Item Properties, Assets, Bands | [Embeddings](https://github.com/stac-extensions/embeddings) | Step between the origins of neighboring chips in pixels as `[row_stride, col_stride]`. When `stride < chip_size`, chips overlap. |
 | `copernicus:sub_parameter` | string (enum) | Collections, Item Properties, Assets, Bands | [Vegetation Phenology and Productivity](https://github.com/stac-extensions/vpp) | The VPP sub-parameter acronym. See below for the list of allowed values. |
 | `copernicus:subdivision` | string | Collections, Item Properties | [Region](https://github.com/stac-extensions/region) | ISO 3166-2 codes for identifying the principal subdivisions (e.g., provinces or states) of a country that is primarily covered by the data. Only provide the second part of the ISO 3166-2 code to reduce redundancy. |
@@ -306,6 +308,8 @@ Fields usable in Item Properties (and Collection Summaries).
 | `copernicus:spatial_resolution` | number | [Raster](https://github.com/stac-extensions/raster) | Average spatial resolution (in meters) of the pixels in the band. |
 | `copernicus:standard_name` | string | [Climate and Forecast (CF) Conventions](https://github.com/stac-extensions/cf) | Corresponds to the [CF Standard Name](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). |
 | `copernicus:storage_options` | object | [Table](https://github.com/stac-extensions/table), [Xarray Assets](https://github.com/stac-extensions/xarray-assets) | **DEPRECATED** Additional keywords for opening the dataset. |
+| `copernicus:storage_refs` | array of string | [Storage](https://github.com/stac-extensions/storage) | A property that specifies which schemes in copernicus:storage_schemes may be used to access an Asset or Link. Each value must be one of the keys defined in copernicus:storage_schemes. |
+| `copernicus:storage_schemes` | map of objects | [Storage](https://github.com/stac-extensions/storage) | A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection. |
 | `copernicus:stride` | array of integer | [Embeddings](https://github.com/stac-extensions/embeddings) | Step between the origins of neighboring chips in pixels as `[row_stride, col_stride]`. When `stride < chip_size`, chips overlap. |
 | `copernicus:sub_parameter` | string (enum) | [Vegetation Phenology and Productivity](https://github.com/stac-extensions/vpp) | The VPP sub-parameter acronym. See below for the list of allowed values. |
 | `copernicus:subdivision` | string | [Region](https://github.com/stac-extensions/region) | ISO 3166-2 codes for identifying the principal subdivisions (e.g., provinces or states) of a country that is primarily covered by the data. Only provide the second part of the ISO 3166-2 code to reduce redundancy. |
@@ -410,6 +414,8 @@ Fields usable in Assets and Item Asset Definitions.
 | `copernicus:spatial_resolution` | number | [Raster](https://github.com/stac-extensions/raster) | Average spatial resolution (in meters) of the pixels in the band. |
 | `copernicus:standard_name` | string | [Climate and Forecast (CF) Conventions](https://github.com/stac-extensions/cf) | Corresponds to the [CF Standard Name](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). |
 | `copernicus:storage_options` | object | [Table](https://github.com/stac-extensions/table), [Xarray Assets](https://github.com/stac-extensions/xarray-assets) | **DEPRECATED** Additional keywords for opening the dataset. |
+| `copernicus:storage_refs` | array of string | [Storage](https://github.com/stac-extensions/storage) | A property that specifies which schemes in copernicus:storage_schemes may be used to access an Asset or Link. Each value must be one of the keys defined in copernicus:storage_schemes. |
+| `copernicus:storage_schemes` | map of objects | [Storage](https://github.com/stac-extensions/storage) | A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection. |
 | `copernicus:stride` | array of integer | [Embeddings](https://github.com/stac-extensions/embeddings) | Step between the origins of neighboring chips in pixels as `[row_stride, col_stride]`. When `stride < chip_size`, chips overlap. |
 | `copernicus:sub_parameter` | string (enum) | [Vegetation Phenology and Productivity](https://github.com/stac-extensions/vpp) | The VPP sub-parameter acronym. See below for the list of allowed values. |
 | `copernicus:sun_azimuth` | number | [View Geometry](https://github.com/stac-extensions/view) | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
@@ -442,6 +448,8 @@ Fields usable in Links and Link Templates.
 | `copernicus:published` | string | [Timestamps](https://github.com/stac-extensions/timestamps) | Date and time the corresponding data (see below) was published the first time, in UTC. |
 | `copernicus:servers` | array of string | [Web Map Links](https://github.com/stac-extensions/web-map-links) | The servers to substitute for the {s} variable in the link href. |
 | `copernicus:shape` | array of integer | [Projection](https://github.com/stac-extensions/projection) | Number of pixels in Y and X directions for the default grid |
+| `copernicus:storage_refs` | array of string | [Storage](https://github.com/stac-extensions/storage) | A property that specifies which schemes in copernicus:storage_schemes may be used to access an Asset or Link. Each value must be one of the keys defined in copernicus:storage_schemes. |
+| `copernicus:storage_schemes` | map of objects | [Storage](https://github.com/stac-extensions/storage) | A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection. |
 | `copernicus:transform` | array of number | [Projection](https://github.com/stac-extensions/projection) | The affine transformation coefficients for the default grid |
 | `copernicus:unpublished` | string | [Timestamps](https://github.com/stac-extensions/timestamps) | Date and time the corresponding data (see below) was unpublished, in UTC. |
 | `copernicus:wkt2` | string or null | [Projection](https://github.com/stac-extensions/projection) | null |
@@ -551,6 +559,11 @@ Fields that appear inside object-valued `copernicus:` fields (e.g. each entry of
 | **Theme Object** (`copernicus:themes`) | | | | |
 | `copernicus:themes/concepts` | array | `copernicus:themes` values | [Themes](https://github.com/stac-extensions/themes) | **REQUIRED**. One or more entity/concept identifers from this knowledge system. |
 | `copernicus:themes/scheme` | string | `copernicus:themes` values | [Themes](https://github.com/stac-extensions/themes) | **REQUIRED**. An identifier for the knowledge organization system used. It is recommended that the identifier is a resolvable URI. |
+| **Storage Scheme Object** (`copernicus:storage_schemes`) | | | | |
+| `copernicus:storage_schemes/platform` | string | `copernicus:storage_schemes` values | [Storage](https://github.com/stac-extensions/storage) | **REQUIRED.** The cloud provider where data is stored as URI or URI template to the API. |
+| `copernicus:storage_schemes/region` | string | `copernicus:storage_schemes` values | [Storage](https://github.com/stac-extensions/storage) | The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider). |
+| `copernicus:storage_schemes/requester_pays` | boolean | `copernicus:storage_schemes` values | [Storage](https://github.com/stac-extensions/storage) | Is the data "requester pays" (`true`) or is it "data manager/cloud provider pays" (`false`). Defaults to `false`. |
+| `copernicus:storage_schemes/type` | string | `copernicus:storage_schemes` values | [Storage](https://github.com/stac-extensions/storage) | **REQUIRED.** Type identifier for the platform, see below. |
 | **Histogram Object** (`copernicus:histogram`) | | | | |
 | `copernicus:histogram/buckets` | array | `copernicus:histogram` values | [Raster](https://github.com/stac-extensions/raster) | Array of integer indicating the number of pixels included in the bucket. |
 | `copernicus:histogram/count` | number | `copernicus:histogram` values | [Raster](https://github.com/stac-extensions/raster) | number of buckets of the distribution. |
@@ -685,6 +698,8 @@ The table below maps the original extension field names to their `copernicus:` e
 | `stats:stats_items` | `copernicus:stats_items` | Stats |
 | `table:storage_options` | `copernicus:storage_options` | Table |
 | `xarray:storage_options` | `copernicus:storage_options` | Xarray Assets |
+| `storage:storage_refs` | `copernicus:storage_refs` | Storage |
+| `storage:storage_schemes` | `copernicus:storage_schemes` | Storage |
 | `emb:stride` | `copernicus:stride` | Embeddings |
 | `vpp:sub_parameter` | `copernicus:sub_parameter` | Vegetation Phenology and Productivity |
 | `region:subdivision` | `copernicus:subdivision` | Region |
@@ -733,6 +748,20 @@ Nested object definitions carried over from the source extensions:
   above list all origins.
 - Fields with source-specific semantics keep distinct names, e.g. `copernicus:order_status`
   (from `order:status`) vs `copernicus:product_status` (from `product:status`).
+
+## Source extension documentation
+
+The full specification text of each merged source extension is harvested into
+[docs/sources/](docs/sources/README.md) so that this repository is self-contained.
+Each document is named `<extension>-<version>.md` after the exact upstream version it
+was harvested from (e.g. [eo-v2.0.0.md](docs/sources/eo-v2.0.0.md),
+[sar-v1.3.2.md](docs/sources/sar-v1.3.2.md)).
+
+**Note:** Field names in the harvested documents have been rewritten to their
+`copernicus:` equivalents, consistent with the [field mapping table](#field-mapping)
+above. Everything else (descriptions, allowed values, object schemas, best practices)
+is preserved verbatim from the upstream specifications, and all relative links point
+to the upstream repositories.
 
 ## Schema
 

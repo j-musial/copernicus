@@ -6,34 +6,34 @@
   "type": "Feature",
   "id": "S3A_OL_2_LRR____20260101T100000_20260101T110000_20260102T000000",
   "bbox": [
-    10,
-    50,
-    20,
-    60
+    10.0,
+    50.0,
+    20.0,
+    60.0
   ],
   "geometry": {
     "type": "Polygon",
     "coordinates": [
       [
         [
-          10,
-          50
+          10.0,
+          50.0
         ],
         [
-          20,
-          50
+          20.0,
+          50.0
         ],
         [
-          20,
-          60
+          20.0,
+          60.0
         ],
         [
-          10,
-          60
+          10.0,
+          60.0
         ],
         [
-          10,
-          50
+          10.0,
+          50.0
         ]
       ]
     ]
@@ -136,8 +136,8 @@
       "copernicus:alternate": {
         "aws": {
           "href": "https://data-aws.example.com/ogvi.nc",
-          "type": "application/netcdf",
-          "copernicus:alternate_name": "AWS mirror"
+          "copernicus:alternate_name": "AWS mirror",
+          "type": "application/netcdf"
         }
       },
       "copernicus:open_kwargs": {

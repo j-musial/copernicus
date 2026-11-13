@@ -1,0 +1,123 @@
+<!--
+Harvested from https://github.com/stac-extensions/storage (v2.0.0) on 2026-11-13 for the
+Copernicus STAC Extension. Field names have been rewritten to their
+copernicus: equivalents — see the field mapping table in the main README.
+Upstream license: Apache-2.0.
+-->
+
+# Storage (v2.0.0)
+
+- **Source repository:** [stac-extensions/storage](https://github.com/stac-extensions/storage)
+- **Upstream version:** v2.0.0
+- **Upstream schema:** <https://stac-extensions.github.io/storage/v2.0.0/schema.json>
+- **License:** Apache-2.0
+
+The following is the specification text of the *Storage* extension as merged into
+the Copernicus STAC Extension. All field names below use the `copernicus:` prefix.
+
+---
+
+- **Title:** Storage
+- **Identifier:** <https://stac-extensions.github.io/storage/v2.0.0/schema.json>
+- **Field Name Prefix:** storage
+- **Scope:** Item, Catalog, Collection
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Pilot
+- **Owner**: @matthewhanson @m-mohr
+
+This document explains the Storage Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
+It allows adding details related to cloud object storage access and costs to be associated with STAC Assets.
+This extension does not cover NFS solutions provided by PaaS cloud companies.
+
+- Examples:
+  - [NAIP Item with Alternate Assets](https://github.com/stac-extensions/storage/blob/main/examples/item-naip.json): Shows a mixture of storage providers, including custom S3 hosts
+    and the [alternate assets extension](https://github.com/stac-extensions/alternate-assets).
+  - [Catalog with Link](https://github.com/stac-extensions/storage/blob/main/examples/catalog-link.json): Shows the usage of the extension on a link in a STAC Catalog.
+  - [Collection with Auth](https://github.com/stac-extensions/storage/blob/main/examples/collection.json): Shows the usage of the extension in a STAC Collecion in combination with the
+    [authentication extension](https://github.com/stac-extensions/authentication).
+- [JSON Schema](https://github.com/stac-extensions/storage/blob/main/json-schema/schema.json)
+- [Changelog](https://github.com/stac-extensions/storage/blob/main/CHANGELOG.md)
+
+### Fields
+
+The fields in the table below can be used in these parts of STAC documents:
+
+- [x] Catalogs
+- [x] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [ ] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
+- [ ] Links
+
+| Field Name        | Type                                                         | Description |
+| ----------------- | ------------------------------------------------------------ | ----------- |
+| `copernicus:storage_schemes` | Map<string, [Storage Scheme Object](#storage-scheme-object)> | **REQUIRED.** A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection. |
+
+---
+
+The fields in the table below can be used in these parts of STAC documents:
+
+- [ ] Catalogs
+- [ ] Collections
+- [ ] Item Properties (incl. Summaries in Collections)
+- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
+- [x] Links
+- [x] [Alternate Assets Object](https://github.com/stac-extensions/alternate-assets?tab=readme-ov-file#alternate-asset-object)
+
+| Field Name     | Type       | Description |
+| -------------- | ---------- | ----------- |
+| `copernicus:storage_refs` | \[string\] | A property that specifies which schemes in `copernicus:storage_schemes` may be used to access an Asset or Link. Each value must be one of the keys defined in `copernicus:storage_schemes`. |
+
+#### Storage Scheme Object
+
+| Field Name     | Type    | Description |
+| -------------- | ------- | ----------- |
+| type           | string  | **REQUIRED.** Type identifier for the platform, see below. |
+| platform       | string  | **REQUIRED.** The cloud provider where data is stored as URI or URI template to the API. |
+| region         | string  | The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider). |
+| requester_pays | boolean | Is the data "requester pays" (`true`) or is it "data manager/cloud provider pays" (`false`). Defaults to `false`. |
+| ...            | ...     | Additional properties as defined in the URL template or in the platform specific documents. |
+
+The properties `title` and `description` as defined in Common Metadata should be used as well.
+
+##### platform
+
+The `platform` field identifies the cloud provider where the data is stored as URI or URI template to the API of the service.
+
+If a URI template is provided, all variables must be defined in the Storage Scheme Object as a property with the same name.
+For example, the URI template `https://{bucket}.{region}.example.com` must have at least the properties
+`bucket` and `region` defined:
+
+```json
+{
+  "type": "example",
+  "platform": "https://{bucket}.{region}.example.com",
+  "region": "eu-fr",
+  "bucket": "john-doe-stac",
+  "requester_pays": true
+}
+```
+
+In case an `href` contains a non-HTTP URL that is not directly resolvable,
+the `platform` property must identify the host so that the URL can be resolved without further information.
+For example, this is especially useful to provide the endpoint URL for custom S3 providers.
+In this case the `platform` could effectively provide the endpoint URL.
+
+##### type
+
+We try to collect pre-defined templates and best pratices for as many providers as possible
+in this repository, but be aware that these are not part of the official extension releases.
+This extension just provides the framework, the provider best pratices
+may change at any time without a new version of this extension being released.
+
+The following providers have defined best pratices at this point:
+
+| `type`      | Provider and Documentation |
+| ----------- | -------------------------- |
+| `aws-s3`    | [AWS S3](https://github.com/stac-extensions/storage/blob/main/platforms/aws-s3.md) |
+| `custom-s3` | [Generic S3 (non-AWS)](https://github.com/stac-extensions/storage/blob/main/platforms/custom-s3.md) |
+| `ms-azure`  | [Microsoft Azure](https://github.com/stac-extensions/storage/blob/main/platforms/ms-azure.md) |
+
+Feel encouraged to submit additional platform specifications via Pull Requests.
+
+The `type` fields can be any value chosen by the implementor,
+but the types defined in the table above should be used as defined in the best practices.
+This ensures proper schema validation.

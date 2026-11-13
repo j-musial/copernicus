@@ -1,0 +1,121 @@
+<!--
+Harvested from https://github.com/stac-extensions/cf (v1.0.0) on 2026-11-13 for the
+Copernicus STAC Extension. Field names have been rewritten to their
+copernicus: equivalents — see the field mapping table in the main README.
+Upstream license: Apache-2.0.
+-->
+
+# Climate and Forecast (CF) Conventions (v1.0.0)
+
+- **Source repository:** [stac-extensions/cf](https://github.com/stac-extensions/cf)
+- **Upstream version:** v1.0.0
+- **Upstream schema:** <https://stac-extensions.github.io/cf/v1.0.0/schema.json#>
+- **License:** Apache-2.0
+
+The following is the specification text of the *Climate and Forecast (CF) Conventions* extension as merged into
+the Copernicus STAC Extension. All field names below use the `copernicus:` prefix.
+
+---
+
+- **Title:** CF
+- **Identifier:** <https://stac-extensions.github.io/cf/v1.0.0/schema.json>
+- **Field Name Prefix:** cf
+- **Scope:** Item, Collection
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
+- **Owner**: @Fred-Leclercq
+
+This document explains the CF Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
+
+It adds fields to provide the properties that mirror the [CF metadata convention](http://cfconventions.org/).
+
+- Examples:
+  - [Item](https://github.com/stac-extensions/cf/blob/main/examples/item.json) and [Collection](https://github.com/stac-extensions/cf/blob/main/examples/collection.json):
+    Shows the basic usage of the extension in a STAC Item and a corresponding summarizing STAC Collection
+- [JSON Schema](https://github.com/stac-extensions/cf/blob/main/json-schema/schema.json)
+- [Changelog](https://github.com/stac-extensions/cf/blob/main/CHANGELOG.md)
+
+### Fields
+
+The fields in the table below can be used in these parts of STAC documents:
+
+- [ ] Catalogs
+- [x] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections and Asset Templates)
+- [ ] Links (incl. Link Templates)
+- [x] Bands
+- [x] Data Cube Extension (`copernicus:variables`, `copernicus:dimensions`)
+
+| Field Name       | Type      | Description |
+| ---------------- | --------- | ----------- |
+| copernicus:standard_name | string    | Corresponds to the [CF Standard Name](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). |
+| copernicus:cell_methods  | \[string\|null] | A list of string or `null` attributes that describe the "method" applied to the data as defined in the CF conventions. |
+| description      | string    | Corresponds to the [CF `long_name`](https://cfconventions.org/cf-conventions/cf-conventions.html#long-name). |
+| unit             | string    | Corresponds to the [CF `units`](https://cfconventions.org/cf-conventions/cf-conventions.html#units). |
+
+#### Additional Field Information
+
+##### copernicus:standard_name
+
+The CF standard name is a controlled vocabulary term used in Climate and Forecast (CF) metadata conventions
+to unambiguously describe the physical quantity represented by a variable in climate and geophysical data files.
+If variable has a standard_name definition in the CF convention, it must be a non-empty value from the
+[CF Standard Name Table](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html).
+Otherwise `copernicus:standard_name` is an empty value.
+
+##### copernicus:cell_methods
+
+The cell_methods attribute in the CF (Climate and Forecast) convention is designed to describe how the values in a data variable
+were derived with respect to one or more axes (e.g., time, latitude, longitude). Each "method" represents the statistical or
+computational operations applied to data along specific axes. For example, if used within the datacube extension then the
+order of cell_methods aligns with the order of spatial and temporal extensions.
+
+```json
+"copernicus:variables": {
+  "some_variable": {
+    "copernicus:cell_methods": [null, "minimum"],
+    "dimensions": [
+        "vertical_dimension1",
+        "time_interval2"
+    ]
+  }
+}
+```
+
+In this case `null` indicates that no method is applied over the first dimension `vertical_dimension1` but
+the `minimum` method is applied over the second dimension `time_interval2`. 
+These dimensions would be defined in the `copernicus:dimensions` fields.
+
+If a data value is representative of variation over a combination of axes this approach is not sufficient \(e.g. the standard
+deviation of topographic height within a longitude-latitude gridbox would have `cell_methods="latitude: longitude: standard_deviation"`\).
+Such `cell_methods` cannot be described as per dimension methods in an array and would need a plain string representation.
+
+```json
+"copernicus:variables": {
+  "some_variable": {
+    "copernicus:cell_methods": "latitude: longitude: standard_deviation",
+    "dimensions": [
+        "latitude",
+        "longitude"
+    ]
+  }
+}
+```
+
+See [CF Cell Methods](https://cfconventions.org/cf-conventions/cf-conventions.html#cell-methods) for more details.
+
+##### description
+
+The description field as defined by the [NUG](https://docs.unidata.ucar.edu/nug/current/index.html) is meant to contain a long descriptive
+name which may, for example, be used for labeling plots. 
+See [CF "long_name"](https://cfconventions.org/cf-conventions/cf-conventions.html#long-name) for more details.
+
+##### unit
+
+The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org/[) (unit code)
+or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name).
+Unit is not required for dimensionless quantities. A variable with no unit attribute is assumed to be
+dimensionless. The conforming unit for quantities that represent fractions, or parts of a whole, is "1".
+Descriptive information about dimensionless quantities, such as sea-ice concentration, cloud fraction,
+probability, etc., should be given in the "description" attribute rather than the unit field.
+See [CF "units"](https://cfconventions.org/cf-conventions/cf-conventions.html#dimensionless-units) for more details.

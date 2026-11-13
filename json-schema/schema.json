@@ -344,6 +344,12 @@
          "copernicus:storage_options": {
           "$ref": "#/definitions/copernicus:storage_options"
          },
+         "copernicus:storage_refs": {
+          "$ref": "#/definitions/copernicus:storage_refs"
+         },
+         "copernicus:storage_schemes": {
+          "$ref": "#/definitions/copernicus:storage_schemes"
+         },
          "copernicus:stride": {
           "$ref": "#/definitions/copernicus:stride"
          },
@@ -737,6 +743,12 @@
        },
        "copernicus:storage_options": {
         "$ref": "#/definitions/copernicus:storage_options"
+       },
+       "copernicus:storage_refs": {
+        "$ref": "#/definitions/copernicus:storage_refs"
+       },
+       "copernicus:storage_schemes": {
+        "$ref": "#/definitions/copernicus:storage_schemes"
        },
        "copernicus:stride": {
         "$ref": "#/definitions/copernicus:stride"
@@ -2007,6 +2019,60 @@
    "type": "object",
    "description": "**DEPRECATED** Additional keywords for opening the dataset."
   },
+  "copernicus:storage_refs": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1
+   },
+   "description": "A property that specifies which schemes in copernicus:storage_schemes may be used to access an Asset or Link. Each value must be one of the keys defined in copernicus:storage_schemes."
+  },
+  "copernicus:storage_schemes": {
+   "type": "object",
+   "patternProperties": {
+    "^.{1,}$": {
+     "required": [
+      "type",
+      "platform"
+     ],
+     "properties": {
+      "type": {
+       "title": "Type identifier",
+       "type": "string"
+      },
+      "platform": {
+       "title": "Platform",
+       "type": "string",
+       "format": "uri-template",
+       "pattern": "^[\\w\\+.-]+://"
+      },
+      "region": {
+       "title": "Region",
+       "type": "string"
+      },
+      "requester_pays": {
+       "type": "boolean",
+       "title": "Requester pays",
+       "default": false
+      }
+     },
+     "allOf": [
+      {
+       "$ref": "./platforms/aws-s3.json"
+      },
+      {
+       "$ref": "./platforms/custom-s3.json"
+      },
+      {
+       "$ref": "./platforms/ms-azure.json"
+      }
+     ],
+     "additionalProperties": true
+    }
+   },
+   "additionalProperties": false,
+   "description": "A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection."
+  },
   "copernicus:stride": {
    "type": "array",
    "items": {
@@ -2488,6 +2554,12 @@
        "copernicus:storage_options": {
         "$ref": "#/definitions/copernicus:storage_options"
        },
+       "copernicus:storage_refs": {
+        "$ref": "#/definitions/copernicus:storage_refs"
+       },
+       "copernicus:storage_schemes": {
+        "$ref": "#/definitions/copernicus:storage_schemes"
+       },
        "copernicus:stride": {
         "$ref": "#/definitions/copernicus:stride"
        },
@@ -2575,6 +2647,12 @@
        },
        "copernicus:shape": {
         "$ref": "#/definitions/copernicus:shape"
+       },
+       "copernicus:storage_refs": {
+        "$ref": "#/definitions/copernicus:storage_refs"
+       },
+       "copernicus:storage_schemes": {
+        "$ref": "#/definitions/copernicus:storage_schemes"
        },
        "copernicus:transform": {
         "$ref": "#/definitions/copernicus:transform"
