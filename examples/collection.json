@@ -1,0 +1,180 @@
+{
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://j-musial.github.io/copernicus/v0.1.0/schema.json"
+  ],
+  "id": "sentinel-3-olci-l2",
+  "type": "Collection",
+  "title": "Sentinel-3 OLCI Level-2 Ocean Colour",
+  "description": "Sentinel-3 Ocean and Land Colour Instrument (OLCI) Level-2 products.",
+  "license": "proprietary",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-02-16T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "European Space Agency",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "EUMETSAT",
+      "roles": [
+        "processor"
+      ]
+    },
+    {
+      "name": "Copernicus Programme",
+      "roles": [
+        "host"
+      ]
+    }
+  ],
+  "copernicus:contacts": [
+    {
+      "name": "Copernicus Support",
+      "organization": "ECMWF",
+      "emails": [
+        {
+          "value": "support@example.com",
+          "roles": [
+            "support"
+          ]
+        }
+      ],
+      "contactInstructions": "Email only",
+      "roles": [
+        "processor"
+      ]
+    }
+  ],
+  "copernicus:themes": [
+    {
+      "concepts": [
+        {
+          "id": "oceans",
+          "url": "https://example.com/vocab/oceans"
+        }
+      ],
+      "scheme": "https://example.com/vocab/eo-terms"
+    }
+  ],
+  "copernicus:product_type": "OL_2_LRR___",
+  "copernicus:timeliness_category": "near-real-time",
+  "copernicus:acquisition_type": "nominal",
+  "copernicus:cube_dimensions": {
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        -180,
+        180
+      ],
+      "reference_system": 4326
+    },
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        -90,
+        90
+      ],
+      "reference_system": 4326
+    },
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "2016-02-16T00:00:00Z",
+        null
+      ]
+    }
+  },
+  "copernicus:variables": {
+    "ogvi": {
+      "dimensions": [
+        "x",
+        "y",
+        "time"
+      ],
+      "type": "data",
+      "unit": "m-1",
+      "data_type": "uint16"
+    }
+  },
+  "copernicus:renders": {
+    "ogvi-true-color": {
+      "assets": [
+        "ogvi"
+      ],
+      "title": "Ocean vegetation index",
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ],
+      "colormap_name": "viridis",
+      "resampling": "bilinear"
+    }
+  },
+  "copernicus:stats_collections": {
+    "count": 42,
+    "versions": {
+      "1": 42
+    },
+    "extensions": {
+      "https://j-musial.github.io/copernicus/v0.1.0/schema.json": 42
+    }
+  },
+  "copernicus:stats_items": {
+    "count": 123456
+  },
+  "summaries": {
+    "copernicus:cloud_cover": {
+      "min": 0,
+      "max": 100
+    },
+    "copernicus:orbit_state": [
+      "ascending",
+      "descending"
+    ],
+    "copernicus:frequency_band": [
+      "C"
+    ],
+    "copernicus:polarizations": [
+      [
+        "HH",
+        "HV"
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://catalog.example.com/collections/sentinel-3-olci-l2"
+    },
+    {
+      "rel": "license",
+      "href": "https://example.com/license",
+      "type": "text/html"
+    }
+  ]
+}
