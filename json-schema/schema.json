@@ -1,0 +1,3682 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "https://j-musial.github.io/copernicus/v0.1.0/schema.json",
+ "title": "Copernicus STAC Extension",
+ "description": "Merged STAC extension for Copernicus services, combining 31 STAC extensions under a single copernicus: field prefix.",
+ "type": "object",
+ "required": [
+  "stac_extensions",
+  "type"
+ ],
+ "properties": {
+  "stac_extensions": {
+   "type": "array",
+   "contains": {
+    "const": "https://j-musial.github.io/copernicus/v0.1.0/schema.json"
+   }
+  },
+  "type": {
+   "type": "string",
+   "enum": [
+    "Feature",
+    "Collection",
+    "Catalog"
+   ]
+  }
+ },
+ "allOf": [
+  {
+   "$comment": "STAC Items: fields in Item Properties, Assets, Links, Bands",
+   "if": {
+    "properties": {
+     "type": {
+      "const": "Feature"
+     }
+    }
+   },
+   "then": {
+    "allOf": [
+     {
+      "properties": {
+       "properties": {
+        "type": "object",
+        "properties": {
+         "copernicus:absolute_orbit": {
+          "$ref": "#/definitions/copernicus:absolute_orbit"
+         },
+         "copernicus:acquisition_station": {
+          "$ref": "#/definitions/copernicus:acquisition_station"
+         },
+         "copernicus:acquisition_type": {
+          "$ref": "#/definitions/copernicus:acquisition_type"
+         },
+         "copernicus:anx_datetime": {
+          "$ref": "#/definitions/copernicus:anx_datetime"
+         },
+         "copernicus:auth_refs": {
+          "$ref": "#/definitions/copernicus:auth_refs"
+         },
+         "copernicus:auth_schemes": {
+          "$ref": "#/definitions/copernicus:auth_schemes"
+         },
+         "copernicus:azimuth": {
+          "$ref": "#/definitions/copernicus:azimuth"
+         },
+         "copernicus:bandwidth": {
+          "$ref": "#/definitions/copernicus:bandwidth"
+         },
+         "copernicus:bbox": {
+          "$ref": "#/definitions/copernicus:bbox"
+         },
+         "copernicus:beam_ids": {
+          "$ref": "#/definitions/copernicus:beam_ids"
+         },
+         "copernicus:bitfields": {
+          "$ref": "#/definitions/copernicus:bitfields"
+         },
+         "copernicus:bits_per_sample": {
+          "$ref": "#/definitions/copernicus:bits_per_sample"
+         },
+         "copernicus:cell_methods": {
+          "$ref": "#/definitions/copernicus:cell_methods"
+         },
+         "copernicus:center_frequency": {
+          "$ref": "#/definitions/copernicus:center_frequency"
+         },
+         "copernicus:center_wavelength": {
+          "$ref": "#/definitions/copernicus:center_wavelength"
+         },
+         "copernicus:centroid": {
+          "$ref": "#/definitions/copernicus:centroid"
+         },
+         "copernicus:chip_size": {
+          "$ref": "#/definitions/copernicus:chip_size"
+         },
+         "copernicus:citation": {
+          "$ref": "#/definitions/copernicus:citation"
+         },
+         "copernicus:classes": {
+          "$ref": "#/definitions/copernicus:classes"
+         },
+         "copernicus:cloud_cover": {
+          "$ref": "#/definitions/copernicus:cloud_cover"
+         },
+         "copernicus:code": {
+          "$ref": "#/definitions/copernicus:code"
+         },
+         "copernicus:columns": {
+          "$ref": "#/definitions/copernicus:columns"
+         },
+         "copernicus:common_name": {
+          "$ref": "#/definitions/copernicus:common_name"
+         },
+         "copernicus:contacts": {
+          "$ref": "#/definitions/copernicus:contacts"
+         },
+         "copernicus:country": {
+          "$ref": "#/definitions/copernicus:country"
+         },
+         "copernicus:datastrip_id": {
+          "$ref": "#/definitions/copernicus:datastrip_id"
+         },
+         "copernicus:datatake_id": {
+          "$ref": "#/definitions/copernicus:datatake_id"
+         },
+         "copernicus:datetime": {
+          "$ref": "#/definitions/copernicus:datetime"
+         },
+         "copernicus:description": {
+          "$ref": "#/definitions/copernicus:description"
+         },
+         "copernicus:dimensions": {
+          "$ref": "#/definitions/copernicus:dimensions"
+         },
+         "copernicus:doi": {
+          "$ref": "#/definitions/copernicus:doi"
+         },
+         "copernicus:embedding_dimensions": {
+          "$ref": "#/definitions/copernicus:embedding_dimensions"
+         },
+         "copernicus:embedding_type": {
+          "$ref": "#/definitions/copernicus:embedding_type"
+         },
+         "copernicus:expires": {
+          "$ref": "#/definitions/copernicus:expires"
+         },
+         "copernicus:expression": {
+          "$ref": "#/definitions/copernicus:expression"
+         },
+         "copernicus:facility": {
+          "$ref": "#/definitions/copernicus:facility"
+         },
+         "copernicus:frequency_band": {
+          "$ref": "#/definitions/copernicus:frequency_band"
+         },
+         "copernicus:full_width_half_max": {
+          "$ref": "#/definitions/copernicus:full_width_half_max"
+         },
+         "copernicus:geometry": {
+          "$ref": "#/definitions/copernicus:geometry"
+         },
+         "copernicus:geometry_types": {
+          "$ref": "#/definitions/copernicus:geometry_types"
+         },
+         "copernicus:grid_code": {
+          "$ref": "#/definitions/copernicus:grid_code"
+         },
+         "copernicus:grid_id": {
+          "$ref": "#/definitions/copernicus:grid_id"
+         },
+         "copernicus:histogram": {
+          "$ref": "#/definitions/copernicus:histogram"
+         },
+         "copernicus:incidence_angle": {
+          "$ref": "#/definitions/copernicus:incidence_angle"
+         },
+         "copernicus:instrument_configuration_id": {
+          "$ref": "#/definitions/copernicus:instrument_configuration_id"
+         },
+         "copernicus:instrument_mode": {
+          "$ref": "#/definitions/copernicus:instrument_mode"
+         },
+         "copernicus:instrument_type": {
+          "$ref": "#/definitions/copernicus:instrument_type"
+         },
+         "copernicus:level": {
+          "$ref": "#/definitions/copernicus:level"
+         },
+         "copernicus:lineage": {
+          "$ref": "#/definitions/copernicus:lineage"
+         },
+         "copernicus:looks_azimuth": {
+          "$ref": "#/definitions/copernicus:looks_azimuth"
+         },
+         "copernicus:looks_equivalent_number": {
+          "$ref": "#/definitions/copernicus:looks_equivalent_number"
+         },
+         "copernicus:looks_range": {
+          "$ref": "#/definitions/copernicus:looks_range"
+         },
+         "copernicus:mmu": {
+          "$ref": "#/definitions/copernicus:mmu"
+         },
+         "copernicus:mmw": {
+          "$ref": "#/definitions/copernicus:mmw"
+         },
+         "copernicus:moon_azimuth": {
+          "$ref": "#/definitions/copernicus:moon_azimuth"
+         },
+         "copernicus:moon_elevation": {
+          "$ref": "#/definitions/copernicus:moon_elevation"
+         },
+         "copernicus:name": {
+          "$ref": "#/definitions/copernicus:name"
+         },
+         "copernicus:nominal_track": {
+          "$ref": "#/definitions/copernicus:nominal_track"
+         },
+         "copernicus:observation_direction": {
+          "$ref": "#/definitions/copernicus:observation_direction"
+         },
+         "copernicus:off_nadir": {
+          "$ref": "#/definitions/copernicus:off_nadir"
+         },
+         "copernicus:offset": {
+          "$ref": "#/definitions/copernicus:offset"
+         },
+         "copernicus:orbit_cycle": {
+          "$ref": "#/definitions/copernicus:orbit_cycle"
+         },
+         "copernicus:orbit_state": {
+          "$ref": "#/definitions/copernicus:orbit_state"
+         },
+         "copernicus:orbit_state_vectors": {
+          "$ref": "#/definitions/copernicus:orbit_state_vectors"
+         },
+         "copernicus:order_date": {
+          "$ref": "#/definitions/copernicus:order_date"
+         },
+         "copernicus:order_expiration_date": {
+          "$ref": "#/definitions/copernicus:order_expiration_date"
+         },
+         "copernicus:order_id": {
+          "$ref": "#/definitions/copernicus:order_id"
+         },
+         "copernicus:order_status": {
+          "$ref": "#/definitions/copernicus:order_status"
+         },
+         "copernicus:origin_datetime": {
+          "$ref": "#/definitions/copernicus:origin_datetime"
+         },
+         "copernicus:original_data_type": {
+          "$ref": "#/definitions/copernicus:original_data_type"
+         },
+         "copernicus:pixel_spacing_azimuth": {
+          "$ref": "#/definitions/copernicus:pixel_spacing_azimuth"
+         },
+         "copernicus:pixel_spacing_range": {
+          "$ref": "#/definitions/copernicus:pixel_spacing_range"
+         },
+         "copernicus:platform_international_designator": {
+          "$ref": "#/definitions/copernicus:platform_international_designator"
+         },
+         "copernicus:polarizations": {
+          "$ref": "#/definitions/copernicus:polarizations"
+         },
+         "copernicus:primary_datetime": {
+          "$ref": "#/definitions/copernicus:primary_datetime"
+         },
+         "copernicus:primary_geometry": {
+          "$ref": "#/definitions/copernicus:primary_geometry"
+         },
+         "copernicus:product_status": {
+          "$ref": "#/definitions/copernicus:product_status"
+         },
+         "copernicus:product_type": {
+          "$ref": "#/definitions/copernicus:product_type"
+         },
+         "copernicus:projjson": {
+          "$ref": "#/definitions/copernicus:projjson"
+         },
+         "copernicus:publications": {
+          "$ref": "#/definitions/copernicus:publications"
+         },
+         "copernicus:published": {
+          "$ref": "#/definitions/copernicus:published"
+         },
+         "copernicus:quality_status": {
+          "$ref": "#/definitions/copernicus:quality_status"
+         },
+         "copernicus:quantization_method": {
+          "$ref": "#/definitions/copernicus:quantization_method"
+         },
+         "copernicus:reference_scale": {
+          "$ref": "#/definitions/copernicus:reference_scale"
+         },
+         "copernicus:relative_burst": {
+          "$ref": "#/definitions/copernicus:relative_burst"
+         },
+         "copernicus:relative_orbit": {
+          "$ref": "#/definitions/copernicus:relative_orbit"
+         },
+         "copernicus:renders": {
+          "$ref": "#/definitions/copernicus:renders"
+         },
+         "copernicus:resolution_azimuth": {
+          "$ref": "#/definitions/copernicus:resolution_azimuth"
+         },
+         "copernicus:resolution_range": {
+          "$ref": "#/definitions/copernicus:resolution_range"
+         },
+         "copernicus:row_count": {
+          "$ref": "#/definitions/copernicus:row_count"
+         },
+         "copernicus:sampling": {
+          "$ref": "#/definitions/copernicus:sampling"
+         },
+         "copernicus:sampling_rate": {
+          "$ref": "#/definitions/copernicus:sampling_rate"
+         },
+         "copernicus:scale": {
+          "$ref": "#/definitions/copernicus:scale"
+         },
+         "copernicus:season": {
+          "$ref": "#/definitions/copernicus:season"
+         },
+         "copernicus:shape": {
+          "$ref": "#/definitions/copernicus:shape"
+         },
+         "copernicus:snow_cover": {
+          "$ref": "#/definitions/copernicus:snow_cover"
+         },
+         "copernicus:software": {
+          "$ref": "#/definitions/copernicus:software"
+         },
+         "copernicus:solar_illumination": {
+          "$ref": "#/definitions/copernicus:solar_illumination"
+         },
+         "copernicus:spatial_resolution": {
+          "$ref": "#/definitions/copernicus:spatial_resolution"
+         },
+         "copernicus:standard_name": {
+          "$ref": "#/definitions/copernicus:standard_name"
+         },
+         "copernicus:storage_options": {
+          "$ref": "#/definitions/copernicus:storage_options"
+         },
+         "copernicus:stride": {
+          "$ref": "#/definitions/copernicus:stride"
+         },
+         "copernicus:sub_parameter": {
+          "$ref": "#/definitions/copernicus:sub_parameter"
+         },
+         "copernicus:subdivision": {
+          "$ref": "#/definitions/copernicus:subdivision"
+         },
+         "copernicus:sun_azimuth": {
+          "$ref": "#/definitions/copernicus:sun_azimuth"
+         },
+         "copernicus:sun_elevation": {
+          "$ref": "#/definitions/copernicus:sun_elevation"
+         },
+         "copernicus:tables": {
+          "$ref": "#/definitions/copernicus:tables"
+         },
+         "copernicus:temporal_period": {
+          "$ref": "#/definitions/copernicus:temporal_period"
+         },
+         "copernicus:themes": {
+          "$ref": "#/definitions/copernicus:themes"
+         },
+         "copernicus:timeliness": {
+          "$ref": "#/definitions/copernicus:timeliness"
+         },
+         "copernicus:timeliness_category": {
+          "$ref": "#/definitions/copernicus:timeliness_category"
+         },
+         "copernicus:transform": {
+          "$ref": "#/definitions/copernicus:transform"
+         },
+         "copernicus:unit": {
+          "$ref": "#/definitions/copernicus:unit"
+         },
+         "copernicus:unpublished": {
+          "$ref": "#/definitions/copernicus:unpublished"
+         },
+         "copernicus:variables": {
+          "$ref": "#/definitions/copernicus:variables"
+         },
+         "copernicus:version": {
+          "$ref": "#/definitions/copernicus:version"
+         },
+         "copernicus:wkt2": {
+          "$ref": "#/definitions/copernicus:wkt2"
+         }
+        },
+        "patternProperties": {
+         "^(?!copernicus:)": {}
+        },
+        "additionalProperties": true
+       }
+      }
+     },
+     {
+      "$ref": "#/definitions/validate_assets"
+     },
+     {
+      "$ref": "#/definitions/validate_links"
+     }
+    ]
+   }
+  },
+  {
+   "$comment": "STAC Collections and Catalogs: own fields + summaries",
+   "if": {
+    "properties": {
+     "type": {
+      "enum": [
+       "Collection",
+       "Catalog"
+      ]
+     }
+    }
+   },
+   "then": {
+    "allOf": [
+     {
+      "type": "object",
+      "properties": {
+       "copernicus:stats_catalogs": {
+        "$ref": "#/definitions/copernicus:stats_catalogs"
+       },
+       "copernicus:stats_collections": {
+        "$ref": "#/definitions/copernicus:stats_collections"
+       },
+       "copernicus:stats_items": {
+        "$ref": "#/definitions/copernicus:stats_items"
+       },
+       "copernicus:absolute_orbit": {
+        "$ref": "#/definitions/copernicus:absolute_orbit"
+       },
+       "copernicus:acquisition_station": {
+        "$ref": "#/definitions/copernicus:acquisition_station"
+       },
+       "copernicus:acquisition_type": {
+        "$ref": "#/definitions/copernicus:acquisition_type"
+       },
+       "copernicus:anx_datetime": {
+        "$ref": "#/definitions/copernicus:anx_datetime"
+       },
+       "copernicus:auth_refs": {
+        "$ref": "#/definitions/copernicus:auth_refs"
+       },
+       "copernicus:auth_schemes": {
+        "$ref": "#/definitions/copernicus:auth_schemes"
+       },
+       "copernicus:azimuth": {
+        "$ref": "#/definitions/copernicus:azimuth"
+       },
+       "copernicus:bandwidth": {
+        "$ref": "#/definitions/copernicus:bandwidth"
+       },
+       "copernicus:bbox": {
+        "$ref": "#/definitions/copernicus:bbox"
+       },
+       "copernicus:beam_ids": {
+        "$ref": "#/definitions/copernicus:beam_ids"
+       },
+       "copernicus:bitfields": {
+        "$ref": "#/definitions/copernicus:bitfields"
+       },
+       "copernicus:bits_per_sample": {
+        "$ref": "#/definitions/copernicus:bits_per_sample"
+       },
+       "copernicus:cell_methods": {
+        "$ref": "#/definitions/copernicus:cell_methods"
+       },
+       "copernicus:center_frequency": {
+        "$ref": "#/definitions/copernicus:center_frequency"
+       },
+       "copernicus:center_wavelength": {
+        "$ref": "#/definitions/copernicus:center_wavelength"
+       },
+       "copernicus:centroid": {
+        "$ref": "#/definitions/copernicus:centroid"
+       },
+       "copernicus:chip_size": {
+        "$ref": "#/definitions/copernicus:chip_size"
+       },
+       "copernicus:citation": {
+        "$ref": "#/definitions/copernicus:citation"
+       },
+       "copernicus:classes": {
+        "$ref": "#/definitions/copernicus:classes"
+       },
+       "copernicus:cloud_cover": {
+        "$ref": "#/definitions/copernicus:cloud_cover"
+       },
+       "copernicus:code": {
+        "$ref": "#/definitions/copernicus:code"
+       },
+       "copernicus:columns": {
+        "$ref": "#/definitions/copernicus:columns"
+       },
+       "copernicus:common_name": {
+        "$ref": "#/definitions/copernicus:common_name"
+       },
+       "copernicus:contacts": {
+        "$ref": "#/definitions/copernicus:contacts"
+       },
+       "copernicus:country": {
+        "$ref": "#/definitions/copernicus:country"
+       },
+       "copernicus:datastrip_id": {
+        "$ref": "#/definitions/copernicus:datastrip_id"
+       },
+       "copernicus:datatake_id": {
+        "$ref": "#/definitions/copernicus:datatake_id"
+       },
+       "copernicus:datetime": {
+        "$ref": "#/definitions/copernicus:datetime"
+       },
+       "copernicus:description": {
+        "$ref": "#/definitions/copernicus:description"
+       },
+       "copernicus:dimensions": {
+        "$ref": "#/definitions/copernicus:dimensions"
+       },
+       "copernicus:doi": {
+        "$ref": "#/definitions/copernicus:doi"
+       },
+       "copernicus:embedding_dimensions": {
+        "$ref": "#/definitions/copernicus:embedding_dimensions"
+       },
+       "copernicus:embedding_type": {
+        "$ref": "#/definitions/copernicus:embedding_type"
+       },
+       "copernicus:expires": {
+        "$ref": "#/definitions/copernicus:expires"
+       },
+       "copernicus:expression": {
+        "$ref": "#/definitions/copernicus:expression"
+       },
+       "copernicus:facility": {
+        "$ref": "#/definitions/copernicus:facility"
+       },
+       "copernicus:frequency_band": {
+        "$ref": "#/definitions/copernicus:frequency_band"
+       },
+       "copernicus:full_width_half_max": {
+        "$ref": "#/definitions/copernicus:full_width_half_max"
+       },
+       "copernicus:geometry": {
+        "$ref": "#/definitions/copernicus:geometry"
+       },
+       "copernicus:geometry_types": {
+        "$ref": "#/definitions/copernicus:geometry_types"
+       },
+       "copernicus:grid_code": {
+        "$ref": "#/definitions/copernicus:grid_code"
+       },
+       "copernicus:grid_id": {
+        "$ref": "#/definitions/copernicus:grid_id"
+       },
+       "copernicus:histogram": {
+        "$ref": "#/definitions/copernicus:histogram"
+       },
+       "copernicus:incidence_angle": {
+        "$ref": "#/definitions/copernicus:incidence_angle"
+       },
+       "copernicus:instrument_configuration_id": {
+        "$ref": "#/definitions/copernicus:instrument_configuration_id"
+       },
+       "copernicus:instrument_mode": {
+        "$ref": "#/definitions/copernicus:instrument_mode"
+       },
+       "copernicus:instrument_type": {
+        "$ref": "#/definitions/copernicus:instrument_type"
+       },
+       "copernicus:level": {
+        "$ref": "#/definitions/copernicus:level"
+       },
+       "copernicus:lineage": {
+        "$ref": "#/definitions/copernicus:lineage"
+       },
+       "copernicus:looks_azimuth": {
+        "$ref": "#/definitions/copernicus:looks_azimuth"
+       },
+       "copernicus:looks_equivalent_number": {
+        "$ref": "#/definitions/copernicus:looks_equivalent_number"
+       },
+       "copernicus:looks_range": {
+        "$ref": "#/definitions/copernicus:looks_range"
+       },
+       "copernicus:mmu": {
+        "$ref": "#/definitions/copernicus:mmu"
+       },
+       "copernicus:mmw": {
+        "$ref": "#/definitions/copernicus:mmw"
+       },
+       "copernicus:moon_azimuth": {
+        "$ref": "#/definitions/copernicus:moon_azimuth"
+       },
+       "copernicus:moon_elevation": {
+        "$ref": "#/definitions/copernicus:moon_elevation"
+       },
+       "copernicus:name": {
+        "$ref": "#/definitions/copernicus:name"
+       },
+       "copernicus:nominal_track": {
+        "$ref": "#/definitions/copernicus:nominal_track"
+       },
+       "copernicus:observation_direction": {
+        "$ref": "#/definitions/copernicus:observation_direction"
+       },
+       "copernicus:off_nadir": {
+        "$ref": "#/definitions/copernicus:off_nadir"
+       },
+       "copernicus:offset": {
+        "$ref": "#/definitions/copernicus:offset"
+       },
+       "copernicus:orbit_cycle": {
+        "$ref": "#/definitions/copernicus:orbit_cycle"
+       },
+       "copernicus:orbit_state": {
+        "$ref": "#/definitions/copernicus:orbit_state"
+       },
+       "copernicus:orbit_state_vectors": {
+        "$ref": "#/definitions/copernicus:orbit_state_vectors"
+       },
+       "copernicus:order_date": {
+        "$ref": "#/definitions/copernicus:order_date"
+       },
+       "copernicus:order_expiration_date": {
+        "$ref": "#/definitions/copernicus:order_expiration_date"
+       },
+       "copernicus:order_id": {
+        "$ref": "#/definitions/copernicus:order_id"
+       },
+       "copernicus:order_status": {
+        "$ref": "#/definitions/copernicus:order_status"
+       },
+       "copernicus:origin_datetime": {
+        "$ref": "#/definitions/copernicus:origin_datetime"
+       },
+       "copernicus:original_data_type": {
+        "$ref": "#/definitions/copernicus:original_data_type"
+       },
+       "copernicus:pixel_spacing_azimuth": {
+        "$ref": "#/definitions/copernicus:pixel_spacing_azimuth"
+       },
+       "copernicus:pixel_spacing_range": {
+        "$ref": "#/definitions/copernicus:pixel_spacing_range"
+       },
+       "copernicus:platform_international_designator": {
+        "$ref": "#/definitions/copernicus:platform_international_designator"
+       },
+       "copernicus:polarizations": {
+        "$ref": "#/definitions/copernicus:polarizations"
+       },
+       "copernicus:primary_datetime": {
+        "$ref": "#/definitions/copernicus:primary_datetime"
+       },
+       "copernicus:primary_geometry": {
+        "$ref": "#/definitions/copernicus:primary_geometry"
+       },
+       "copernicus:product_status": {
+        "$ref": "#/definitions/copernicus:product_status"
+       },
+       "copernicus:product_type": {
+        "$ref": "#/definitions/copernicus:product_type"
+       },
+       "copernicus:projjson": {
+        "$ref": "#/definitions/copernicus:projjson"
+       },
+       "copernicus:publications": {
+        "$ref": "#/definitions/copernicus:publications"
+       },
+       "copernicus:published": {
+        "$ref": "#/definitions/copernicus:published"
+       },
+       "copernicus:quality_status": {
+        "$ref": "#/definitions/copernicus:quality_status"
+       },
+       "copernicus:quantization_method": {
+        "$ref": "#/definitions/copernicus:quantization_method"
+       },
+       "copernicus:reference_scale": {
+        "$ref": "#/definitions/copernicus:reference_scale"
+       },
+       "copernicus:relative_burst": {
+        "$ref": "#/definitions/copernicus:relative_burst"
+       },
+       "copernicus:relative_orbit": {
+        "$ref": "#/definitions/copernicus:relative_orbit"
+       },
+       "copernicus:renders": {
+        "$ref": "#/definitions/copernicus:renders"
+       },
+       "copernicus:resolution_azimuth": {
+        "$ref": "#/definitions/copernicus:resolution_azimuth"
+       },
+       "copernicus:resolution_range": {
+        "$ref": "#/definitions/copernicus:resolution_range"
+       },
+       "copernicus:row_count": {
+        "$ref": "#/definitions/copernicus:row_count"
+       },
+       "copernicus:sampling": {
+        "$ref": "#/definitions/copernicus:sampling"
+       },
+       "copernicus:sampling_rate": {
+        "$ref": "#/definitions/copernicus:sampling_rate"
+       },
+       "copernicus:scale": {
+        "$ref": "#/definitions/copernicus:scale"
+       },
+       "copernicus:season": {
+        "$ref": "#/definitions/copernicus:season"
+       },
+       "copernicus:shape": {
+        "$ref": "#/definitions/copernicus:shape"
+       },
+       "copernicus:snow_cover": {
+        "$ref": "#/definitions/copernicus:snow_cover"
+       },
+       "copernicus:software": {
+        "$ref": "#/definitions/copernicus:software"
+       },
+       "copernicus:solar_illumination": {
+        "$ref": "#/definitions/copernicus:solar_illumination"
+       },
+       "copernicus:spatial_resolution": {
+        "$ref": "#/definitions/copernicus:spatial_resolution"
+       },
+       "copernicus:standard_name": {
+        "$ref": "#/definitions/copernicus:standard_name"
+       },
+       "copernicus:storage_options": {
+        "$ref": "#/definitions/copernicus:storage_options"
+       },
+       "copernicus:stride": {
+        "$ref": "#/definitions/copernicus:stride"
+       },
+       "copernicus:sub_parameter": {
+        "$ref": "#/definitions/copernicus:sub_parameter"
+       },
+       "copernicus:subdivision": {
+        "$ref": "#/definitions/copernicus:subdivision"
+       },
+       "copernicus:sun_azimuth": {
+        "$ref": "#/definitions/copernicus:sun_azimuth"
+       },
+       "copernicus:sun_elevation": {
+        "$ref": "#/definitions/copernicus:sun_elevation"
+       },
+       "copernicus:tables": {
+        "$ref": "#/definitions/copernicus:tables"
+       },
+       "copernicus:temporal_period": {
+        "$ref": "#/definitions/copernicus:temporal_period"
+       },
+       "copernicus:themes": {
+        "$ref": "#/definitions/copernicus:themes"
+       },
+       "copernicus:timeliness": {
+        "$ref": "#/definitions/copernicus:timeliness"
+       },
+       "copernicus:timeliness_category": {
+        "$ref": "#/definitions/copernicus:timeliness_category"
+       },
+       "copernicus:transform": {
+        "$ref": "#/definitions/copernicus:transform"
+       },
+       "copernicus:unit": {
+        "$ref": "#/definitions/copernicus:unit"
+       },
+       "copernicus:unpublished": {
+        "$ref": "#/definitions/copernicus:unpublished"
+       },
+       "copernicus:variables": {
+        "$ref": "#/definitions/copernicus:variables"
+       },
+       "copernicus:version": {
+        "$ref": "#/definitions/copernicus:version"
+       },
+       "copernicus:wkt2": {
+        "$ref": "#/definitions/copernicus:wkt2"
+       }
+      }
+     },
+     {
+      "$ref": "#/definitions/validate_links"
+     }
+    ]
+   }
+  }
+ ],
+ "definitions": {
+  "copernicus:absolute_orbit": {
+   "title": "Absolute Orbit",
+   "description": "The absolute orbit number at the start of acquisition. When the orbit changes during data acquisition (i.e., the acquisition spans multiple orbits), use the absolute orbit number at the start of the acquisition.",
+   "type": "integer",
+   "minimum": 1
+  },
+  "copernicus:acquisition_station": {
+   "type": "string",
+   "description": "The acquisition station (ground station) where the satellite data was downlinked. Equivalent to `eop:acquisition_station` in OGC 10-157r4 and OGC 17-003r2."
+  },
+  "copernicus:acquisition_type": {
+   "type": "string",
+   "enum": [
+    "nominal",
+    "calibration",
+    "other"
+   ],
+   "description": "The acquisition type of the product."
+  },
+  "copernicus:alternate": {
+   "type": "object",
+   "minProperties": 1,
+   "additionalProperties": {
+    "allOf": [
+     {
+      "$comment": "Require href in alternate assets in normal assets",
+      "type": "object",
+      "required": [
+       "href"
+      ],
+      "properties": {
+       "href": {
+        "type": "string",
+        "format": "iri-reference",
+        "minLength": 1
+       }
+      }
+     },
+     {
+      "$ref": "#/definitions/object_without_href"
+     }
+    ]
+   },
+   "description": "Alternate asset locations keyed by provider name, each an Asset Object without href."
+  },
+  "copernicus:alternate_name": {
+   "type": "string",
+   "minLength": 1,
+   "description": "A human readable name for the alternate asset."
+  },
+  "copernicus:anx_datetime": {
+   "type": "string",
+   "format": "date-time",
+   "description": "The [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node) Crossing (ANX) time, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)."
+  },
+  "copernicus:auth_refs": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "The names of authentication schemes (keys of copernicus:auth_schemes) that apply to an asset or link."
+  },
+  "copernicus:auth_schemes": {
+   "type": "object",
+   "patternProperties": {
+    "^.*$": {
+     "$ref": "#/definitions/auth_scheme"
+    }
+   },
+   "additionalProperties": false,
+   "description": "Dictionary of named authentication schemes that guard access to assets or links."
+  },
+  "copernicus:azimuth": {
+   "title": "Azimuth angle",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 360,
+   "description": "Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360)."
+  },
+  "copernicus:bandwidth": {
+   "title": "Range Bandwidth (GHz)",
+   "type": "number",
+   "exclusiveMinimum": 0,
+   "description": "The range bandwidth of the SAR instrument, in gigahertz (GHz), representing the full bandwidth used in range compression and image formation."
+  },
+  "copernicus:bbox": {
+   "title": "Extent",
+   "type": "array",
+   "oneOf": [
+    {
+     "minItems": 4,
+     "maxItems": 4
+    },
+    {
+     "minItems": 6,
+     "maxItems": 6
+    }
+   ],
+   "items": {
+    "type": "number"
+   },
+   "description": "Bounding box of the Item in the asset CRS in 2 or 3 dimensions."
+  },
+  "copernicus:beam_ids": {
+   "title": "Beam identifiers",
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "Composition of the swath of the SAR acquision referencing the beam identifiers."
+  },
+  "copernicus:bitfields": {
+   "type": "array",
+   "uniqueItems": true,
+   "minItems": 1,
+   "items": {
+    "$ref": "#/definitions/bit_field_object"
+   },
+   "description": "Classes stored in bit fields in the raster"
+  },
+  "copernicus:bits_per_sample": {
+   "title": "The actual number of bits used for this band",
+   "type": "integer",
+   "description": "The actual number of bits used for this band. Normally only present when the number of bits is non-standard for the `datatype`, such as when a 1 bit TIFF is represented as byte."
+  },
+  "copernicus:cell_methods": {
+   "type": "array",
+   "items": {
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "description": "null]"
+  },
+  "copernicus:center_frequency": {
+   "title": "Center Frequency (GHz)",
+   "type": "number",
+   "exclusiveMinimum": 0,
+   "description": "RECOMMENDED. The center frequency of the radar signal transmitted by the instrument, in gigahertz (GHz)."
+  },
+  "copernicus:center_wavelength": {
+   "title": "Center Wavelength",
+   "type": "number",
+   "exclusiveMinimum": 0,
+   "description": "The center wavelength of the band, in micrometers (\u03bcm)."
+  },
+  "copernicus:centroid": {
+   "title": "Centroid",
+   "type": "object",
+   "required": [
+    "lat",
+    "lon"
+   ],
+   "properties": {
+    "lat": {
+     "type": "number",
+     "minimum": -90,
+     "maximum": 90
+    },
+    "lon": {
+     "type": "number",
+     "minimum": -180,
+     "maximum": 180
+    }
+   },
+   "description": "Coordinates representing the centroid of the Item (in lat/long)"
+  },
+  "copernicus:chip_size": {
+   "type": "array",
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   },
+   "minItems": 2,
+   "maxItems": 2,
+   "description": "Chip size in pixels as `[height, width]`."
+  },
+  "copernicus:citation": {
+   "type": "string",
+   "title": "Proposed Data Citation",
+   "description": "The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively."
+  },
+  "copernicus:classes": {
+   "type": "array",
+   "uniqueItems": true,
+   "minItems": 1,
+   "items": {
+    "$ref": "#/definitions/class_object"
+   },
+   "description": "Classes stored in raster or bands"
+  },
+  "copernicus:cloud_cover": {
+   "title": "Cloud Cover",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 100,
+   "description": "Estimate of cloud cover as a percentage (0-100)."
+  },
+  "copernicus:code": {
+   "title": "Projection code",
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "null"
+  },
+  "copernicus:columns": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "properties": {
+     "name": {
+      "type": "string",
+      "minLength": 1
+     },
+     "description": {
+      "type": "string",
+      "minLength": 1
+     },
+     "type": {
+      "type": "string",
+      "minLength": 1
+     }
+    }
+   },
+   "description": "A list of Column Objects describing each column."
+  },
+  "copernicus:common_name": {
+   "title": "Common Name of the band",
+   "type": "string",
+   "enum": [
+    "pan",
+    "coastal",
+    "blue",
+    "green",
+    "green05",
+    "yellow",
+    "red",
+    "rededge",
+    "rededge071",
+    "rededge075",
+    "rededge078",
+    "nir",
+    "nir08",
+    "nir09",
+    "cirrus",
+    "swir16",
+    "swir22",
+    "lwir",
+    "lwir11",
+    "lwir12"
+   ],
+   "description": "The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names)."
+  },
+  "copernicus:contacts": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "anyOf": [
+     {
+      "required": [
+       "name"
+      ]
+     },
+     {
+      "required": [
+       "organization"
+      ]
+     }
+    ],
+    "properties": {
+     "identifier": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "position": {
+      "type": "string"
+     },
+     "organization": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string",
+      "minLength": 1
+     },
+     "logo": {
+      "allOf": [
+       {
+        "$ref": "#/definitions/link"
+       },
+       {
+        "type": "object",
+        "required": [
+         "rel",
+         "type"
+        ],
+        "properties": {
+         "rel": {
+          "const": "icon"
+         }
+        }
+       }
+      ]
+     },
+     "phones": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "value"
+       ],
+       "properties": {
+        "value": {
+         "type": "string",
+         "pattern": "^\\+[1-9]{1}[0-9]{3,14}$"
+        },
+        "roles": {
+         "$ref": "#/definitions/roles"
+        }
+       }
+      }
+     },
+     "emails": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "value"
+       ],
+       "properties": {
+        "value": {
+         "type": "string",
+         "format": "email"
+        },
+        "roles": {
+         "$ref": "#/definitions/roles"
+        }
+       }
+      }
+     },
+     "addresses": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "deliveryPoint": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "city": {
+         "type": "string"
+        },
+        "administrativeArea": {
+         "type": "string"
+        },
+        "postalCode": {
+         "type": "string"
+        },
+        "country": {
+         "type": "string"
+        },
+        "roles": {
+         "$ref": "#/definitions/roles"
+        }
+       }
+      }
+     },
+     "links": {
+      "type": "array",
+      "items": {
+       "allOf": [
+        {
+         "$ref": "#/definitions/link"
+        },
+        {
+         "type": "object",
+         "required": [
+          "type"
+         ]
+        }
+       ]
+      }
+     },
+     "contactInstructions": {
+      "type": "string"
+     },
+     "roles": {
+      "$ref": "#/definitions/roles"
+     }
+    }
+   },
+   "description": "**REQUIRED.** A list of contacts qualified by their role."
+  },
+  "copernicus:country": {
+   "type": "string",
+   "minLength": 2,
+   "maxLength": 2,
+   "pattern": "^[A-Z]{2}$",
+   "description": "ISO 3166-1 alpha-2 country code. Two-letter country code for the country that is primarily covered by the data."
+  },
+  "copernicus:datastrip_id": {
+   "title": "Datastrip ID",
+   "type": "string",
+   "minLength": 1,
+   "examples": [
+    "S2A_OPER_MSI_L2A_DS_2APS_20250626T142217_S20250626T102649_N05.11"
+   ],
+   "description": "The identifier of the datastrip, i.e. the part of a datatake that the ground segment processed as one unit. See [Datastrip ID](#datastrip-id) for details."
+  },
+  "copernicus:datatake_id": {
+   "title": "Unique Datatake Identifier",
+   "type": "string",
+   "description": "Datatake identification. Examples: for S1, datatake_id = 12032; for S2, datatake_id = GS2A_20231215T103431_044292_N05.10"
+  },
+  "copernicus:datetime": {
+   "title": "Processing Datetime",
+   "type": "string",
+   "format": "date-time",
+   "pattern": "(\\+00:00|Z)$",
+   "examples": [
+    "2020-01-05T12:34:55Z"
+   ],
+   "description": "Processing date and time of the corresponding data formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), in UTC."
+  },
+  "copernicus:description": {
+   "type": "string",
+   "minLength": 1,
+   "description": "Corresponds to the [CF `long_name`](https://cfconventions.org/cf-conventions/cf-conventions.html#long-name)."
+  },
+  "copernicus:dimensions": {
+   "type": "object",
+   "additionalProperties": {
+    "anyOf": [
+     {
+      "$ref": "#/definitions/vector_dimension"
+     },
+     {
+      "$ref": "#/definitions/horizontal_spatial_dimension"
+     },
+     {
+      "$ref": "#/definitions/vertical_spatial_dimension"
+     },
+     {
+      "$ref": "#/definitions/temporal_dimension"
+     },
+     {
+      "$ref": "#/definitions/additional_dimension"
+     }
+    ]
+   },
+   "description": "**REQUIRED.** Uniquely named dimensions of the datacube."
+  },
+  "copernicus:doi": {
+   "type": "string",
+   "title": "Data DOI",
+   "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$",
+   "description": "The DOI of the data, e.g. `10.1000/xyz123`. This MUST NOT be a DOIs link. For all DOI names respective DOI links SHOULD be added to the links section (see chapter \"Relation types\")."
+  },
+  "copernicus:embedding_dimensions": {
+   "type": "array",
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   },
+   "minItems": 1,
+   "description": "**REQUIRED**. Embedding dimensions as an array of sizes, e.g. `[768]` for a single 768-dimensional vector."
+  },
+  "copernicus:embedding_type": {
+   "type": "string",
+   "enum": [
+    "pixel",
+    "chip"
+   ],
+   "description": "**REQUIRED**. Embedding type: `pixel` or `chip`."
+  },
+  "copernicus:expires": {
+   "title": "Expiry Time",
+   "type": "string",
+   "format": "date-time",
+   "pattern": "(\\+00:00|Z)$",
+   "description": "Date and time the corresponding data (see below) expires (is not valid any longer), in UTC."
+  },
+  "copernicus:expression": {
+   "title": "Processing Expression",
+   "type": "object",
+   "required": [
+    "format",
+    "expression"
+   ],
+   "properties": {
+    "format": {
+     "type": "string"
+    },
+    "expression": {
+     "description": "Any data type, depending on the format chosen."
+    }
+   },
+   "description": "An expression or processing chain that describes how the data has been processed. Alternatively, you can also link to a processing chain with the relation type `processing-expression` (see below)."
+  },
+  "copernicus:facility": {
+   "title": "Processing Facility",
+   "type": "string",
+   "examples": [
+    "Copernicus S1 Core Ground Segment - DPA"
+   ],
+   "description": "The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites."
+  },
+  "copernicus:frequency_band": {
+   "title": "Frequency Band",
+   "type": "string",
+   "enum": [
+    "P",
+    "L",
+    "S",
+    "C",
+    "X",
+    "Ku",
+    "K",
+    "Ka"
+   ],
+   "description": "RECOMMENDED. The common name for the frequency band to make it easier to search for bands across instruments. See section \"Common Frequency Band Names\" for a list of accepted names."
+  },
+  "copernicus:full_width_half_max": {
+   "title": "Full Width Half Max (FWHM)",
+   "type": "number",
+   "exclusiveMinimum": 0,
+   "description": "Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (\u03bcm)."
+  },
+  "copernicus:geometry": {
+   "$ref": "https://geojson.org/schema/Geometry.json",
+   "description": "Defines the footprint of this Item."
+  },
+  "copernicus:geometry_types": {
+   "type": "array",
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "enum": [
+     "Point",
+     "MultiPoint",
+     "LineString",
+     "MultiLineString",
+     "Polygon",
+     "MultiPolygon",
+     "GeometryCollection"
+    ]
+   },
+   "description": "A list of the geometry types present in the dataset."
+  },
+  "copernicus:grid_code": {
+   "type": "string",
+   "pattern": "^[A-Z0-9]+-[-_.A-Za-z0-9]+$",
+   "description": "**REQUIRED**. The identifier for the grid element associated with the Item."
+  },
+  "copernicus:grid_id": {
+   "type": "string",
+   "description": "Grid system the chips are aligned to. See [Grid IDs](#grid-ids)."
+  },
+  "copernicus:histogram": {
+   "title": "Histogram",
+   "type": "object",
+   "additionalItems": false,
+   "required": [
+    "count",
+    "min",
+    "max",
+    "buckets"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "count": {
+     "title": "number of buckets",
+     "type": "number"
+    },
+    "min": {
+     "title": "Minimum value of the buckets",
+     "type": "number"
+    },
+    "max": {
+     "title": "Maximum value of the buckets",
+     "type": "number"
+    },
+    "buckets": {
+     "title": "distribution buckets",
+     "type": "array",
+     "minItems": 3,
+     "items": {
+      "title": "number of pixels in the bucket",
+      "type": "integer"
+     }
+    }
+   },
+   "description": "Histogram distribution information of the pixels values in the band."
+  },
+  "copernicus:incidence_angle": {
+   "title": "Center incidence angle",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 90,
+   "description": "The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90)."
+  },
+  "copernicus:instrument_configuration_id": {
+   "title": "Instrument Configuration Identifier",
+   "type": "integer",
+   "description": "The instrument configuration ID is specific to S1 SAR instrument and refers to the onboard configuration. Each version of it has a specific identifier called \"Instrument Configuration ID\" (ICID) corresponding to a specific number. For more information, cf. [\"What is the instrument configuration ID (ICID) ?\"](https://sar-mpc.eu/about/faq/)"
+  },
+  "copernicus:instrument_mode": {
+   "type": "string",
+   "description": "Mode of the altimetry instrument used to collect the data."
+  },
+  "copernicus:instrument_type": {
+   "type": "string",
+   "description": "Type of altimetry instrument used to collect the data.",
+   "enum": [
+    "sar",
+    "doppler",
+    "laser",
+    "microwave",
+    "other"
+   ]
+  },
+  "copernicus:level": {
+   "title": "Processing Level",
+   "type": "string",
+   "examples": [
+    "RAW",
+    "L1",
+    "L1A",
+    "L1B",
+    "L1C",
+    "L2",
+    "L2A",
+    "L3",
+    "L4"
+   ],
+   "description": "The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels)."
+  },
+  "copernicus:lineage": {
+   "title": "Processing Lineage Information",
+   "type": "string",
+   "examples": [
+    "Post Processing GRD"
+   ],
+   "description": "Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for \"GRD\" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation."
+  },
+  "copernicus:looks_azimuth": {
+   "title": "Looks azimuth",
+   "type": "integer",
+   "minimum": 0,
+   "description": "Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path."
+  },
+  "copernicus:looks_equivalent_number": {
+   "title": "Equivalent number of looks (ENL)",
+   "type": "number",
+   "minimum": 0,
+   "description": "The equivalent number of looks (ENL)."
+  },
+  "copernicus:looks_range": {
+   "title": "Looks range",
+   "type": "integer",
+   "minimum": 0,
+   "description": "Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path."
+  },
+  "copernicus:mmu": {
+   "type": "number",
+   "exclusiveMinimum": 0,
+   "description": "Minimum Mapping Unit - the smallest polygon area represented."
+  },
+  "copernicus:mmw": {
+   "type": "number",
+   "exclusiveMinimum": 0,
+   "description": "Minimal Mapping Width - the smallest real-world width represented as polygon."
+  },
+  "copernicus:moon_azimuth": {
+   "title": "Moon Azimuth",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 360,
+   "description": "Moon azimuth angle. From the scene center point on the ground, this is the angle between truth north and the moon. Measured clockwise in degrees (0-360)."
+  },
+  "copernicus:moon_elevation": {
+   "title": "Moon Elevation",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 90,
+   "description": "Moon elevation angle. The angle from the tangent of the scene center point to the moon. Measured from the horizon in degrees (`0`-`90`)."
+  },
+  "copernicus:name": {
+   "type": "string",
+   "minLength": 1,
+   "description": "A human-readable name of the relevant region."
+  },
+  "copernicus:nominal_track": {
+   "$ref": "https://geojson.org/schema/LineString.json#/properties/coordinates",
+   "description": "An array of coordinates used to define the nominal track on the earths surface. This value is recommended ONLY if the item geometry is not representative of the acquisition track."
+  },
+  "copernicus:observation_direction": {
+   "title": "Antenna pointing direction",
+   "type": "string",
+   "enum": [
+    "left",
+    "right"
+   ],
+   "description": "Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`."
+  },
+  "copernicus:off_nadir": {
+   "title": "Off Nadir",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 90,
+   "description": "The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90)."
+  },
+  "copernicus:offset": {
+   "title": "number to be added to the pixel value to transform into the value",
+   "type": "number",
+   "description": "Number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance)."
+  },
+  "copernicus:open_kwargs": {
+   "type": "object",
+   "description": "Keyword arguments to provide to the xarray opener"
+  },
+  "copernicus:orbit_cycle": {
+   "type": "integer",
+   "minimum": 1,
+   "description": "The number of repeat cycle done by the satellite at the time of the acquisition. [Repeat cycle](https://ltb.itc.utwente.nl/page/498/concept/81577) is the time between two successive identical orbits."
+  },
+  "copernicus:orbit_state": {
+   "title": "Orbit State",
+   "type": "string",
+   "enum": [
+    "ascending",
+    "descending",
+    "geostationary",
+    "crossing"
+   ],
+   "description": "The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, `geostationary` for geosynchronous satellites, or `crossing` when the acquisition spans a polar crossing."
+  },
+  "copernicus:orbit_state_vectors": {
+   "type": "object",
+   "$comment": "The key is a date-time string, and the value is an array of numbers.",
+   "patternProperties": {
+    "^(\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\.\\d+([+-][0-2]\\d:[0-5]\\d|Z))|(\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z))|(\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z))$": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 6,
+     "maxItems": 9
+    }
+   },
+   "additionalProperties": false,
+   "description": "The state vectors of the satellite at the time of acquisition."
+  },
+  "copernicus:order_date": {
+   "type": "string",
+   "format": "date-time",
+   "pattern": "(\\+00:00|Z)$",
+   "description": "Indicates the order submission time, in UTC and formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)."
+  },
+  "copernicus:order_expiration_date": {
+   "type": "string",
+   "format": "date-time",
+   "pattern": "(\\+00:00|Z)$",
+   "deprecated": true,
+   "description": "**DEPRECATED.** Indicates the validity time of the order, in UTC and formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Use [`expires` from the timestamps extension](https://github.com/stac-extensions/timestamps/) instead."
+  },
+  "copernicus:order_id": {
+   "type": "string",
+   "description": "Identifier of the order."
+  },
+  "copernicus:order_status": {
+   "type": "string",
+   "enum": [
+    "orderable",
+    "ordered",
+    "pending",
+    "shipping",
+    "succeeded",
+    "failed",
+    "canceled"
+   ],
+   "description": "**REQUIRED**. Describe the status of the ordering. One of the value listed [here](#orderstatus)"
+  },
+  "copernicus:origin_datetime": {
+   "title": "Origin Date Time ",
+   "type": "string",
+   "format": "date-time",
+   "description": "Date time of the input data considered to create the item. Example: for PRIP, time of the availability of all CADU data on the CADIP/XBIP"
+  },
+  "copernicus:original_data_type": {
+   "type": "string",
+   "enum": [
+    "int8",
+    "int16",
+    "int32",
+    "int64",
+    "uint8",
+    "uint16",
+    "uint32",
+    "uint64",
+    "float16",
+    "float32",
+    "float64",
+    "cint16",
+    "cint32",
+    "cfloat32",
+    "cfloat64"
+   ],
+   "description": "Data type before quantization. Uses the same [data type values](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md#data-types) as `data_type`."
+  },
+  "copernicus:pixel_spacing_azimuth": {
+   "title": "Pixel spacing azimuth (m)",
+   "type": "number",
+   "minimum": 0,
+   "description": "The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`."
+  },
+  "copernicus:pixel_spacing_range": {
+   "title": "Pixel spacing range (m)",
+   "type": "number",
+   "minimum": 0,
+   "description": "The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`."
+  },
+  "copernicus:platform_international_designator": {
+   "type": "string",
+   "description": "The International Designator, also known as COSPAR ID, and NSSDCA ID"
+  },
+  "copernicus:pmtiles_layers": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1
+   },
+   "description": "The PMTiles layers to display."
+  },
+  "copernicus:polarizations": {
+   "title": "Polarizations",
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "string",
+    "enum": [
+     "HH",
+     "VV",
+     "HV",
+     "VH",
+     "LH",
+     "LV",
+     "RH",
+     "RV",
+     "CH",
+     "CV"
+    ]
+   },
+   "description": "RECOMMENDED. Any combination of polarizations."
+  },
+  "copernicus:primary_datetime": {
+   "type": "string",
+   "description": "The primary date/time column name."
+  },
+  "copernicus:primary_geometry": {
+   "type": "string",
+   "description": "The primary geometry column name."
+  },
+  "copernicus:product_status": {
+   "$comment": "The value 'qualitydegraded' is deprecated. Use 'product:quality_status' with the value 'degraded' instead.",
+   "type": "string",
+   "enum": [
+    "archived",
+    "acquired",
+    "cancelled",
+    "failed",
+    "planned",
+    "potential",
+    "rejected",
+    "qualitydegraded",
+    "accepted"
+   ],
+   "description": "The lifecycle/status of the product."
+  },
+  "copernicus:product_type": {
+   "type": "string",
+   "minLength": 1,
+   "description": "The product type."
+  },
+  "copernicus:projjson": {
+   "title": "Coordinate Reference System in PROJJSON format",
+   "oneOf": [
+    {
+     "$ref": "https://proj.org/schemas/v0.7/projjson.schema.json"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "description": "null"
+  },
+  "copernicus:publications": {
+   "type": "array",
+   "title": "Publications",
+   "items": {
+    "type": "object",
+    "properties": {
+     "doi": {
+      "type": "string",
+      "title": "Publication DOI",
+      "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
+     },
+     "citation": {
+      "type": "string",
+      "title": "Publication Citation"
+     }
+    }
+   },
+   "description": "List of relevant publications referencing and describing the data."
+  },
+  "copernicus:published": {
+   "title": "Publish Time",
+   "type": "string",
+   "format": "date-time",
+   "pattern": "(\\+00:00|Z)$",
+   "description": "Date and time the corresponding data (see below) was published the first time, in UTC."
+  },
+  "copernicus:quality_status": {
+   "type": "string",
+   "enum": [
+    "nominal",
+    "degraded"
+   ],
+   "description": "The quality status of the product: `nominal` or `degraded`."
+  },
+  "copernicus:quantization_method": {
+   "type": "string",
+   "description": "Quantization method (e.g. `linear`)."
+  },
+  "copernicus:reference_scale": {
+   "type": "integer",
+   "exclusiveMinimum": 0,
+   "description": "Representative fraction denominator (e.g., 50000 for 1:50,000)."
+  },
+  "copernicus:relative_burst": {
+   "title": "Relative burst number",
+   "type": "integer",
+   "minimum": 1,
+   "description": "Identification number that uniquely identifies a burst cycle within each repeat cycle."
+  },
+  "copernicus:relative_orbit": {
+   "title": "Relative Orbit",
+   "description": "The relative orbit number at the start of acquisition. When the orbit changes during data acquisition (i.e., the acquisition spans multiple orbits), use the relative orbit number at the start of the acquisition.",
+   "type": "integer",
+   "minimum": 1
+  },
+  "copernicus:renders": {
+   "type": "object",
+   "title": "Renders",
+   "description": "Dictionary of rendering instructions keyed by a unique render name.",
+   "additionalProperties": {
+    "$comment": "Add your new fields here. Don't require them here, do that above in the corresponding schema.",
+    "type": "object",
+    "required": [
+     "assets"
+    ],
+    "properties": {
+     "assets": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "title": {
+      "type": "string"
+     },
+     "rescale": {
+      "type": "array",
+      "items": {
+       "type": "array",
+       "items": {
+        "type": "number"
+       }
+      }
+     },
+     "nodata": {
+      "type": [
+       "number",
+       "string"
+      ]
+     },
+     "colormap_name": {
+      "type": "string"
+     },
+     "colormap": {
+      "type": "object"
+     },
+     "color_formula": {
+      "type": "string"
+     },
+     "resampling": {
+      "type": "string"
+     },
+     "expression": {
+      "type": [
+       "string",
+       "object",
+       "array"
+      ]
+     },
+     "minmax_zoom": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      }
+     },
+     "bidx": {
+      "type": "array",
+      "items": {
+       "type": "array",
+       "items": {
+        "oneOf": [
+         {
+          "type": "integer",
+          "minimum": 1
+         },
+         {
+          "type": "string",
+          "minLength": 1
+         }
+        ]
+       }
+      }
+     },
+     "asset_as_band": {
+      "type": "boolean"
+     }
+    },
+    "additionalProperties": true
+   }
+  },
+  "copernicus:resolution_azimuth": {
+   "title": "Resolution azimuth (m)",
+   "type": "number",
+   "minimum": 0,
+   "description": "The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m)."
+  },
+  "copernicus:resolution_range": {
+   "title": "Resolution range (m)",
+   "type": "number",
+   "minimum": 0,
+   "description": "The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m)."
+  },
+  "copernicus:row_count": {
+   "type": "number",
+   "minimum": 0,
+   "description": "The number of rows in the dataset."
+  },
+  "copernicus:sampling": {
+   "title": "Pixel sampling in the band",
+   "type": "string",
+   "enum": [
+    "area",
+    "point"
+   ],
+   "description": "One of `area` or `point`. Indicates whether a pixel value should be assumed to represent a sampling over the region of the pixel or a point sample at the center of the pixel."
+  },
+  "copernicus:sampling_rate": {
+   "type": "number",
+   "description": "Sampling rate of the altimetry instrument in Hz."
+  },
+  "copernicus:scale": {
+   "title": "multiplicator factor of the pixel value to transform into the value",
+   "type": "number",
+   "description": "Multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance)."
+  },
+  "copernicus:season": {
+   "type": "string",
+   "enum": [
+    "S1",
+    "S2"
+   ],
+   "description": "The VPP season number. One of `S1` or `S2`. See below for details."
+  },
+  "copernicus:servers": {
+   "type": "array",
+   "minItems": 2,
+   "items": {
+    "type": "string"
+   },
+   "description": "The servers to substitute for the {s} variable in the link href."
+  },
+  "copernicus:shape": {
+   "title": "Shape",
+   "type": "array",
+   "minItems": 2,
+   "maxItems": 2,
+   "items": {
+    "type": "integer"
+   },
+   "description": "Number of pixels in Y and X directions for the default grid"
+  },
+  "copernicus:snow_cover": {
+   "title": "Snow and Ice Cover",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 100,
+   "description": "Estimate of snow and ice cover as a percentage (0-100)."
+  },
+  "copernicus:software": {
+   "title": "Processing Software Name / version",
+   "type": "object",
+   "patternProperties": {
+    ".{1,}": {
+     "type": "string"
+    }
+   },
+   "examples": [
+    {
+     "Sentinel-1 IPF": "002.71"
+    }
+   ],
+   "description": "A dictionary with name/version for key/value describing one or more applications or libraries that were involved during the production of the data for provenance purposes."
+  },
+  "copernicus:solar_illumination": {
+   "title": "Solar Illumination",
+   "type": "number",
+   "minimum": 0,
+   "description": "The solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers."
+  },
+  "copernicus:spatial_resolution": {
+   "title": "Average spatial resolution (in meters) of the pixels in the band",
+   "type": "number",
+   "description": "Average spatial resolution (in meters) of the pixels in the band."
+  },
+  "copernicus:standard_name": {
+   "type": "string",
+   "minLength": 1,
+   "description": "Corresponds to the [CF Standard Name](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html)."
+  },
+  "copernicus:stats_catalogs": {
+   "type": "object",
+   "required": [
+    "count"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "count": {
+     "type": "integer"
+    },
+    "versions": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    },
+    "extensions": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    },
+    "conformance": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    }
+   },
+   "description": "A lookup of statistics for all child catalogs."
+  },
+  "copernicus:stats_collections": {
+   "type": "object",
+   "required": [
+    "count"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "count": {
+     "type": "integer"
+    },
+    "versions": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    },
+    "extensions": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    }
+   },
+   "description": "A lookup of statistics for all child collections."
+  },
+  "copernicus:stats_items": {
+   "type": "object",
+   "required": [
+    "count"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "count": {
+     "type": "integer"
+    },
+    "versions": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    },
+    "extensions": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    },
+    "assets": {
+     "$ref": "#/definitions/object_with_integer_properties"
+    }
+   },
+   "description": "A lookup of statistics for all child items."
+  },
+  "copernicus:storage_options": {
+   "type": "object",
+   "description": "**DEPRECATED** Additional keywords for opening the dataset."
+  },
+  "copernicus:stride": {
+   "type": "array",
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   },
+   "minItems": 2,
+   "maxItems": 2,
+   "description": "Step between the origins of neighboring chips in pixels as `[row_stride, col_stride]`. When `stride < chip_size`, chips overlap."
+  },
+  "copernicus:sub_parameter": {
+   "type": "string",
+   "enum": [
+    "AMPL",
+    "EOSD",
+    "EOSV",
+    "LENGTH",
+    "LSLOPE",
+    "MAXD",
+    "MAXV",
+    "MINV",
+    "QA",
+    "RSLOPE",
+    "SOSD",
+    "SOSV",
+    "SPROD",
+    "TPROD"
+   ],
+   "description": "The VPP sub-parameter acronym. See below for the list of allowed values."
+  },
+  "copernicus:subdivision": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 3,
+   "pattern": "^[A-Z0-9]{1,3}$",
+   "description": "ISO 3166-2 codes for identifying the principal subdivisions (e.g., provinces or states) of a country that is primarily covered by the data. Only provide the second part of the ISO 3166-2 code to reduce redundancy."
+  },
+  "copernicus:sun_azimuth": {
+   "title": "Sun Azimuth",
+   "type": "number",
+   "minimum": 0,
+   "maximum": 360,
+   "description": "Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360)."
+  },
+  "copernicus:sun_elevation": {
+   "title": "Sun Elevation",
+   "type": "number",
+   "minimum": -90,
+   "maximum": 90,
+   "description": "Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (`-90`-`90`). Negative values indicate the sun is below the horizon, e.g. sun elevation of -10\u00b0 means the data was captured during [nautical twilight](https://www.timeanddate.com/astronomy/different-types-twilight.html)."
+  },
+  "copernicus:tables": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     }
+    }
+   },
+   "description": "**DEPRECATED** A list of Table Objects (see below)."
+  },
+  "copernicus:temporal_period": {
+   "type": "string",
+   "pattern": "^P(?!$)(\\d+Y)?(\\d+M)?(\\d+W)?(\\d+D)?(T(?=\\d)(\\d+H)?(\\d+M)?(\\d+(\\.\\d+)?S)?)?$",
+   "description": "Temporal compositing period as an [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) (e.g. `P1Y`, `P3M`)."
+  },
+  "copernicus:themes": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "concepts",
+     "scheme"
+    ],
+    "properties": {
+     "concepts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+       "type": "object",
+       "required": [
+        "id"
+       ],
+       "properties": {
+        "id": {
+         "type": "string",
+         "minLength": 1
+        },
+        "title": {
+         "type": "string",
+         "minLength": 1
+        },
+        "description": {
+         "type": "string",
+         "minLength": 1
+        },
+        "url": {
+         "type": "string",
+         "format": "uri"
+        }
+       }
+      }
+     },
+     "scheme": {
+      "type": "string",
+      "minLength": 1
+     }
+    }
+   },
+   "description": "**REQUIRED.** A knowledge organization system used to classify the STAC entity. Each element is a concept and their respective knowledge organization system / controlled vocabulary."
+  },
+  "copernicus:timeliness": {
+   "type": "string",
+   "format": "duration",
+   "description": "The average expected timeliness of the product as an [ISO 8601 Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)."
+  },
+  "copernicus:timeliness_category": {
+   "type": "string",
+   "minLength": 1,
+   "description": "A proprietary category identifier for the timeliness of the product."
+  },
+  "copernicus:transform": {
+   "title": "Transform",
+   "type": "array",
+   "oneOf": [
+    {
+     "minItems": 6,
+     "maxItems": 6
+    },
+    {
+     "minItems": 9,
+     "maxItems": 9
+    }
+   ],
+   "items": {
+    "type": "number"
+   },
+   "description": "The affine transformation coefficients for the default grid"
+  },
+  "copernicus:unit": {
+   "type": "string",
+   "description": "Corresponds to the [CF `units`](https://cfconventions.org/cf-conventions/cf-conventions.html#units)."
+  },
+  "copernicus:unpublished": {
+   "title": "Removal Time",
+   "type": "string",
+   "format": "date-time",
+   "pattern": "(\\+00:00|Z)$",
+   "description": "Date and time the corresponding data (see below) was unpublished, in UTC."
+  },
+  "copernicus:variables": {
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/definitions/variable"
+   },
+   "description": "Uniquely named variables of the datacube."
+  },
+  "copernicus:version": {
+   "title": "Processing Version",
+   "type": "string",
+   "examples": [
+    "0.2.0"
+   ],
+   "description": "The version of the primary processing software or processing chain that produced the data. For example, this could be the processing baseline for the Sentinel missions."
+  },
+  "copernicus:wkt2": {
+   "title": "Coordinate Reference System in WKT2 format",
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "null"
+  },
+  "copernicus:wms_dimensions": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "WMS dimensions and their values."
+  },
+  "copernicus:wms_layers": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "string",
+    "minLength": 1
+   },
+   "description": "The WMS layers to display."
+  },
+  "copernicus:wms_styles": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1
+   },
+   "description": "The WMS styles to apply."
+  },
+  "copernicus:wms_transparent": {
+   "type": "boolean",
+   "description": "Whether the WMS map background is transparent."
+  },
+  "copernicus:wmts_dimensions": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "WMTS dimensions and their values."
+  },
+  "copernicus:wmts_encoding": {
+   "type": "string",
+   "enum": [
+    "rest",
+    "kvp"
+   ],
+   "description": "The encoding to use for WMTS requests: `rest` or `kvp`."
+  },
+  "copernicus:wmts_layer": {
+   "type": "string",
+   "minLength": 1,
+   "description": "The WMTS layer identifier."
+  },
+  "validate_assets": {
+   "type": "object",
+   "properties": {
+    "assets": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "copernicus:acquisition_type": {
+        "$ref": "#/definitions/copernicus:acquisition_type"
+       },
+       "copernicus:alternate": {
+        "$ref": "#/definitions/copernicus:alternate"
+       },
+       "copernicus:alternate_name": {
+        "$ref": "#/definitions/copernicus:alternate_name"
+       },
+       "copernicus:auth_refs": {
+        "$ref": "#/definitions/copernicus:auth_refs"
+       },
+       "copernicus:auth_schemes": {
+        "$ref": "#/definitions/copernicus:auth_schemes"
+       },
+       "copernicus:azimuth": {
+        "$ref": "#/definitions/copernicus:azimuth"
+       },
+       "copernicus:bandwidth": {
+        "$ref": "#/definitions/copernicus:bandwidth"
+       },
+       "copernicus:bbox": {
+        "$ref": "#/definitions/copernicus:bbox"
+       },
+       "copernicus:beam_ids": {
+        "$ref": "#/definitions/copernicus:beam_ids"
+       },
+       "copernicus:bitfields": {
+        "$ref": "#/definitions/copernicus:bitfields"
+       },
+       "copernicus:bits_per_sample": {
+        "$ref": "#/definitions/copernicus:bits_per_sample"
+       },
+       "copernicus:cell_methods": {
+        "$ref": "#/definitions/copernicus:cell_methods"
+       },
+       "copernicus:center_frequency": {
+        "$ref": "#/definitions/copernicus:center_frequency"
+       },
+       "copernicus:center_wavelength": {
+        "$ref": "#/definitions/copernicus:center_wavelength"
+       },
+       "copernicus:centroid": {
+        "$ref": "#/definitions/copernicus:centroid"
+       },
+       "copernicus:chip_size": {
+        "$ref": "#/definitions/copernicus:chip_size"
+       },
+       "copernicus:classes": {
+        "$ref": "#/definitions/copernicus:classes"
+       },
+       "copernicus:cloud_cover": {
+        "$ref": "#/definitions/copernicus:cloud_cover"
+       },
+       "copernicus:code": {
+        "$ref": "#/definitions/copernicus:code"
+       },
+       "copernicus:columns": {
+        "$ref": "#/definitions/copernicus:columns"
+       },
+       "copernicus:common_name": {
+        "$ref": "#/definitions/copernicus:common_name"
+       },
+       "copernicus:datastrip_id": {
+        "$ref": "#/definitions/copernicus:datastrip_id"
+       },
+       "copernicus:datetime": {
+        "$ref": "#/definitions/copernicus:datetime"
+       },
+       "copernicus:description": {
+        "$ref": "#/definitions/copernicus:description"
+       },
+       "copernicus:embedding_dimensions": {
+        "$ref": "#/definitions/copernicus:embedding_dimensions"
+       },
+       "copernicus:embedding_type": {
+        "$ref": "#/definitions/copernicus:embedding_type"
+       },
+       "copernicus:expires": {
+        "$ref": "#/definitions/copernicus:expires"
+       },
+       "copernicus:expression": {
+        "$ref": "#/definitions/copernicus:expression"
+       },
+       "copernicus:facility": {
+        "$ref": "#/definitions/copernicus:facility"
+       },
+       "copernicus:frequency_band": {
+        "$ref": "#/definitions/copernicus:frequency_band"
+       },
+       "copernicus:full_width_half_max": {
+        "$ref": "#/definitions/copernicus:full_width_half_max"
+       },
+       "copernicus:geometry": {
+        "$ref": "#/definitions/copernicus:geometry"
+       },
+       "copernicus:geometry_types": {
+        "$ref": "#/definitions/copernicus:geometry_types"
+       },
+       "copernicus:grid_id": {
+        "$ref": "#/definitions/copernicus:grid_id"
+       },
+       "copernicus:histogram": {
+        "$ref": "#/definitions/copernicus:histogram"
+       },
+       "copernicus:incidence_angle": {
+        "$ref": "#/definitions/copernicus:incidence_angle"
+       },
+       "copernicus:instrument_mode": {
+        "$ref": "#/definitions/copernicus:instrument_mode"
+       },
+       "copernicus:level": {
+        "$ref": "#/definitions/copernicus:level"
+       },
+       "copernicus:lineage": {
+        "$ref": "#/definitions/copernicus:lineage"
+       },
+       "copernicus:looks_azimuth": {
+        "$ref": "#/definitions/copernicus:looks_azimuth"
+       },
+       "copernicus:looks_equivalent_number": {
+        "$ref": "#/definitions/copernicus:looks_equivalent_number"
+       },
+       "copernicus:looks_range": {
+        "$ref": "#/definitions/copernicus:looks_range"
+       },
+       "copernicus:mmu": {
+        "$ref": "#/definitions/copernicus:mmu"
+       },
+       "copernicus:mmw": {
+        "$ref": "#/definitions/copernicus:mmw"
+       },
+       "copernicus:moon_azimuth": {
+        "$ref": "#/definitions/copernicus:moon_azimuth"
+       },
+       "copernicus:moon_elevation": {
+        "$ref": "#/definitions/copernicus:moon_elevation"
+       },
+       "copernicus:observation_direction": {
+        "$ref": "#/definitions/copernicus:observation_direction"
+       },
+       "copernicus:off_nadir": {
+        "$ref": "#/definitions/copernicus:off_nadir"
+       },
+       "copernicus:offset": {
+        "$ref": "#/definitions/copernicus:offset"
+       },
+       "copernicus:open_kwargs": {
+        "$ref": "#/definitions/copernicus:open_kwargs"
+       },
+       "copernicus:order_date": {
+        "$ref": "#/definitions/copernicus:order_date"
+       },
+       "copernicus:order_expiration_date": {
+        "$ref": "#/definitions/copernicus:order_expiration_date"
+       },
+       "copernicus:order_id": {
+        "$ref": "#/definitions/copernicus:order_id"
+       },
+       "copernicus:order_status": {
+        "$ref": "#/definitions/copernicus:order_status"
+       },
+       "copernicus:original_data_type": {
+        "$ref": "#/definitions/copernicus:original_data_type"
+       },
+       "copernicus:pixel_spacing_azimuth": {
+        "$ref": "#/definitions/copernicus:pixel_spacing_azimuth"
+       },
+       "copernicus:pixel_spacing_range": {
+        "$ref": "#/definitions/copernicus:pixel_spacing_range"
+       },
+       "copernicus:polarizations": {
+        "$ref": "#/definitions/copernicus:polarizations"
+       },
+       "copernicus:primary_datetime": {
+        "$ref": "#/definitions/copernicus:primary_datetime"
+       },
+       "copernicus:primary_geometry": {
+        "$ref": "#/definitions/copernicus:primary_geometry"
+       },
+       "copernicus:product_status": {
+        "$ref": "#/definitions/copernicus:product_status"
+       },
+       "copernicus:product_type": {
+        "$ref": "#/definitions/copernicus:product_type"
+       },
+       "copernicus:projjson": {
+        "$ref": "#/definitions/copernicus:projjson"
+       },
+       "copernicus:published": {
+        "$ref": "#/definitions/copernicus:published"
+       },
+       "copernicus:quality_status": {
+        "$ref": "#/definitions/copernicus:quality_status"
+       },
+       "copernicus:quantization_method": {
+        "$ref": "#/definitions/copernicus:quantization_method"
+       },
+       "copernicus:reference_scale": {
+        "$ref": "#/definitions/copernicus:reference_scale"
+       },
+       "copernicus:relative_burst": {
+        "$ref": "#/definitions/copernicus:relative_burst"
+       },
+       "copernicus:resolution_azimuth": {
+        "$ref": "#/definitions/copernicus:resolution_azimuth"
+       },
+       "copernicus:resolution_range": {
+        "$ref": "#/definitions/copernicus:resolution_range"
+       },
+       "copernicus:row_count": {
+        "$ref": "#/definitions/copernicus:row_count"
+       },
+       "copernicus:sampling": {
+        "$ref": "#/definitions/copernicus:sampling"
+       },
+       "copernicus:scale": {
+        "$ref": "#/definitions/copernicus:scale"
+       },
+       "copernicus:season": {
+        "$ref": "#/definitions/copernicus:season"
+       },
+       "copernicus:shape": {
+        "$ref": "#/definitions/copernicus:shape"
+       },
+       "copernicus:snow_cover": {
+        "$ref": "#/definitions/copernicus:snow_cover"
+       },
+       "copernicus:software": {
+        "$ref": "#/definitions/copernicus:software"
+       },
+       "copernicus:solar_illumination": {
+        "$ref": "#/definitions/copernicus:solar_illumination"
+       },
+       "copernicus:spatial_resolution": {
+        "$ref": "#/definitions/copernicus:spatial_resolution"
+       },
+       "copernicus:standard_name": {
+        "$ref": "#/definitions/copernicus:standard_name"
+       },
+       "copernicus:storage_options": {
+        "$ref": "#/definitions/copernicus:storage_options"
+       },
+       "copernicus:stride": {
+        "$ref": "#/definitions/copernicus:stride"
+       },
+       "copernicus:sub_parameter": {
+        "$ref": "#/definitions/copernicus:sub_parameter"
+       },
+       "copernicus:sun_azimuth": {
+        "$ref": "#/definitions/copernicus:sun_azimuth"
+       },
+       "copernicus:sun_elevation": {
+        "$ref": "#/definitions/copernicus:sun_elevation"
+       },
+       "copernicus:tables": {
+        "$ref": "#/definitions/copernicus:tables"
+       },
+       "copernicus:temporal_period": {
+        "$ref": "#/definitions/copernicus:temporal_period"
+       },
+       "copernicus:timeliness": {
+        "$ref": "#/definitions/copernicus:timeliness"
+       },
+       "copernicus:timeliness_category": {
+        "$ref": "#/definitions/copernicus:timeliness_category"
+       },
+       "copernicus:transform": {
+        "$ref": "#/definitions/copernicus:transform"
+       },
+       "copernicus:unit": {
+        "$ref": "#/definitions/copernicus:unit"
+       },
+       "copernicus:unpublished": {
+        "$ref": "#/definitions/copernicus:unpublished"
+       },
+       "copernicus:version": {
+        "$ref": "#/definitions/copernicus:version"
+       },
+       "copernicus:wkt2": {
+        "$ref": "#/definitions/copernicus:wkt2"
+       }
+      }
+     }
+    }
+   }
+  },
+  "validate_links": {
+   "type": "object",
+   "properties": {
+    "links": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "copernicus:auth_refs": {
+        "$ref": "#/definitions/copernicus:auth_refs"
+       },
+       "copernicus:auth_schemes": {
+        "$ref": "#/definitions/copernicus:auth_schemes"
+       },
+       "copernicus:bbox": {
+        "$ref": "#/definitions/copernicus:bbox"
+       },
+       "copernicus:centroid": {
+        "$ref": "#/definitions/copernicus:centroid"
+       },
+       "copernicus:code": {
+        "$ref": "#/definitions/copernicus:code"
+       },
+       "copernicus:expires": {
+        "$ref": "#/definitions/copernicus:expires"
+       },
+       "copernicus:geometry": {
+        "$ref": "#/definitions/copernicus:geometry"
+       },
+       "copernicus:pmtiles_layers": {
+        "$ref": "#/definitions/copernicus:pmtiles_layers"
+       },
+       "copernicus:projjson": {
+        "$ref": "#/definitions/copernicus:projjson"
+       },
+       "copernicus:published": {
+        "$ref": "#/definitions/copernicus:published"
+       },
+       "copernicus:servers": {
+        "$ref": "#/definitions/copernicus:servers"
+       },
+       "copernicus:shape": {
+        "$ref": "#/definitions/copernicus:shape"
+       },
+       "copernicus:transform": {
+        "$ref": "#/definitions/copernicus:transform"
+       },
+       "copernicus:unpublished": {
+        "$ref": "#/definitions/copernicus:unpublished"
+       },
+       "copernicus:wkt2": {
+        "$ref": "#/definitions/copernicus:wkt2"
+       },
+       "copernicus:wms_dimensions": {
+        "$ref": "#/definitions/copernicus:wms_dimensions"
+       },
+       "copernicus:wms_layers": {
+        "$ref": "#/definitions/copernicus:wms_layers"
+       },
+       "copernicus:wms_styles": {
+        "$ref": "#/definitions/copernicus:wms_styles"
+       },
+       "copernicus:wms_transparent": {
+        "$ref": "#/definitions/copernicus:wms_transparent"
+       },
+       "copernicus:wmts_dimensions": {
+        "$ref": "#/definitions/copernicus:wmts_dimensions"
+       },
+       "copernicus:wmts_encoding": {
+        "$ref": "#/definitions/copernicus:wmts_encoding"
+       },
+       "copernicus:wmts_layer": {
+        "$ref": "#/definitions/copernicus:wmts_layer"
+       }
+      }
+     }
+    }
+   }
+  },
+  "validate_bands": {
+   "type": "object",
+   "properties": {
+    "bands": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "copernicus:bbox": {
+        "$ref": "#/definitions/copernicus:bbox"
+       },
+       "copernicus:bitfields": {
+        "$ref": "#/definitions/copernicus:bitfields"
+       },
+       "copernicus:bits_per_sample": {
+        "$ref": "#/definitions/copernicus:bits_per_sample"
+       },
+       "copernicus:cell_methods": {
+        "$ref": "#/definitions/copernicus:cell_methods"
+       },
+       "copernicus:center_wavelength": {
+        "$ref": "#/definitions/copernicus:center_wavelength"
+       },
+       "copernicus:centroid": {
+        "$ref": "#/definitions/copernicus:centroid"
+       },
+       "copernicus:chip_size": {
+        "$ref": "#/definitions/copernicus:chip_size"
+       },
+       "copernicus:classes": {
+        "$ref": "#/definitions/copernicus:classes"
+       },
+       "copernicus:cloud_cover": {
+        "$ref": "#/definitions/copernicus:cloud_cover"
+       },
+       "copernicus:code": {
+        "$ref": "#/definitions/copernicus:code"
+       },
+       "copernicus:common_name": {
+        "$ref": "#/definitions/copernicus:common_name"
+       },
+       "copernicus:datastrip_id": {
+        "$ref": "#/definitions/copernicus:datastrip_id"
+       },
+       "copernicus:datetime": {
+        "$ref": "#/definitions/copernicus:datetime"
+       },
+       "copernicus:description": {
+        "$ref": "#/definitions/copernicus:description"
+       },
+       "copernicus:embedding_dimensions": {
+        "$ref": "#/definitions/copernicus:embedding_dimensions"
+       },
+       "copernicus:embedding_type": {
+        "$ref": "#/definitions/copernicus:embedding_type"
+       },
+       "copernicus:expression": {
+        "$ref": "#/definitions/copernicus:expression"
+       },
+       "copernicus:facility": {
+        "$ref": "#/definitions/copernicus:facility"
+       },
+       "copernicus:full_width_half_max": {
+        "$ref": "#/definitions/copernicus:full_width_half_max"
+       },
+       "copernicus:geometry": {
+        "$ref": "#/definitions/copernicus:geometry"
+       },
+       "copernicus:grid_id": {
+        "$ref": "#/definitions/copernicus:grid_id"
+       },
+       "copernicus:histogram": {
+        "$ref": "#/definitions/copernicus:histogram"
+       },
+       "copernicus:level": {
+        "$ref": "#/definitions/copernicus:level"
+       },
+       "copernicus:lineage": {
+        "$ref": "#/definitions/copernicus:lineage"
+       },
+       "copernicus:offset": {
+        "$ref": "#/definitions/copernicus:offset"
+       },
+       "copernicus:original_data_type": {
+        "$ref": "#/definitions/copernicus:original_data_type"
+       },
+       "copernicus:projjson": {
+        "$ref": "#/definitions/copernicus:projjson"
+       },
+       "copernicus:quantization_method": {
+        "$ref": "#/definitions/copernicus:quantization_method"
+       },
+       "copernicus:sampling": {
+        "$ref": "#/definitions/copernicus:sampling"
+       },
+       "copernicus:scale": {
+        "$ref": "#/definitions/copernicus:scale"
+       },
+       "copernicus:season": {
+        "$ref": "#/definitions/copernicus:season"
+       },
+       "copernicus:shape": {
+        "$ref": "#/definitions/copernicus:shape"
+       },
+       "copernicus:snow_cover": {
+        "$ref": "#/definitions/copernicus:snow_cover"
+       },
+       "copernicus:software": {
+        "$ref": "#/definitions/copernicus:software"
+       },
+       "copernicus:solar_illumination": {
+        "$ref": "#/definitions/copernicus:solar_illumination"
+       },
+       "copernicus:spatial_resolution": {
+        "$ref": "#/definitions/copernicus:spatial_resolution"
+       },
+       "copernicus:standard_name": {
+        "$ref": "#/definitions/copernicus:standard_name"
+       },
+       "copernicus:stride": {
+        "$ref": "#/definitions/copernicus:stride"
+       },
+       "copernicus:sub_parameter": {
+        "$ref": "#/definitions/copernicus:sub_parameter"
+       },
+       "copernicus:temporal_period": {
+        "$ref": "#/definitions/copernicus:temporal_period"
+       },
+       "copernicus:transform": {
+        "$ref": "#/definitions/copernicus:transform"
+       },
+       "copernicus:unit": {
+        "$ref": "#/definitions/copernicus:unit"
+       },
+       "copernicus:version": {
+        "$ref": "#/definitions/copernicus:version"
+       },
+       "copernicus:wkt2": {
+        "$ref": "#/definitions/copernicus:wkt2"
+       }
+      }
+     }
+    }
+   }
+  },
+  "object_without_href": {
+   "type": "object",
+   "properties": {
+    "alternate:name": {
+     "$ref": "#/definitions/name"
+    }
+   },
+   "allOf": [
+    {
+     "$ref": "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/basics.json"
+    }
+   ]
+  },
+  "auth_scheme": {
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "type": {
+     "title": "Scheme keyword",
+     "type": "string",
+     "examples": [
+      "http",
+      "s3",
+      "signedUrl",
+      "oauth2",
+      "apiKey",
+      "openIdConnect"
+     ]
+    },
+    "description": {
+     "title": "Authentication scheme description",
+     "type": "string"
+    },
+    "auth:refs": {
+     "title": "Keys of schemes in auth:schemes that may supply this scheme's input (any one of them is completed first; its result is this scheme's input, e.g. the subject_token of a tokenExchange flow)",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "type": "string",
+        "const": "apiKey"
+       }
+      }
+     },
+     "then": {
+      "type": "object",
+      "required": [
+       "name",
+       "in"
+      ],
+      "properties": {
+       "name": {
+        "title": "API Key header, query, or cookie parameter name",
+        "type": "string",
+        "examples": [
+         "x-api-key"
+        ]
+       },
+       "in": {
+        "title": "Location of the API Key",
+        "type": "string",
+        "examples": [
+         "query",
+         "header",
+         "cookie"
+        ]
+       }
+      }
+     },
+     "else": {
+      "type": "object",
+      "properties": {
+       "name": false,
+       "in": false
+      }
+     }
+    },
+    {
+     "if": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "type": "string",
+        "const": "http"
+       }
+      }
+     },
+     "then": {
+      "type": "object",
+      "required": [
+       "scheme"
+      ],
+      "properties": {
+       "scheme": {
+        "title": "Name of the http authentication scheme",
+        "type": "string",
+        "examples": [
+         "basic",
+         "bearer",
+         "digest",
+         "dpop",
+         "hoba",
+         "mutual",
+         "negotiate",
+         "oauth",
+         "privatetoken",
+         "scram-sha-1",
+         "scram-sha-256",
+         "vapid"
+        ]
+       }
+      }
+     },
+     "else": {
+      "type": "object",
+      "properties": {
+       "scheme": false
+      }
+     }
+    },
+    {
+     "if": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "type": "string",
+        "enum": [
+         "oauth2",
+         "signedUrl"
+        ]
+       }
+      }
+     },
+     "then": {
+      "type": "object",
+      "required": [
+       "flows"
+      ],
+      "if": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string",
+         "const": "oauth2"
+        }
+       }
+      },
+      "then": {
+       "type": "object",
+       "title": "OAuth2 Flows",
+       "properties": {
+        "flows": {
+         "additionalProperties": {
+          "$ref": "#/definitions/oauth2_flow"
+         },
+         "allOf": [
+          {
+           "patternProperties": {
+            "^(implicit|authorizationCode)$": {
+             "required": [
+              "authorizationUrl"
+             ]
+            },
+            "^(password|clientCredentials|authorizationCode|tokenExchange)$": {
+             "required": [
+              "tokenUrl"
+             ]
+            }
+           }
+          }
+         ]
+        }
+       }
+      },
+      "else": {
+       "type": "object",
+       "title": "Signed URL",
+       "properties": {
+        "flows": {
+         "additionalProperties": {
+          "$ref": "#/definitions/signed_url_flow"
+         }
+        }
+       }
+      }
+     },
+     "else": {
+      "type": "object",
+      "properties": {
+       "flows": false
+      }
+     }
+    },
+    {
+     "if": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "type": "string",
+        "const": "openIdConnect"
+       }
+      }
+     },
+     "then": {
+      "type": "object",
+      "required": [
+       "openIdConnectUrl"
+      ],
+      "properties": {
+       "openIdConnectUrl": {
+        "title": "This URL returns a JSON listing of the OpenID/OAuth endpoints, supported scopes and claims, public keys used to sign the tokens, and other details",
+        "type": "string"
+       }
+      }
+     },
+     "else": {
+      "type": "object",
+      "properties": {
+       "openIdConnectUrl": false
+      }
+     }
+    },
+    {
+     "$comment": "A tokenExchange flow consumes another scheme's token: the scheme must reference at least one scheme; the token obtained through whichever one the client uses is the RFC 8693 subject_token.",
+     "if": {
+      "type": "object",
+      "required": [
+       "flows"
+      ],
+      "properties": {
+       "type": {
+        "const": "oauth2"
+       },
+       "flows": {
+        "type": "object",
+        "required": [
+         "tokenExchange"
+        ]
+       }
+      }
+     },
+     "then": {
+      "type": "object",
+      "required": [
+       "auth:refs"
+      ],
+      "properties": {
+       "auth:refs": {
+        "type": "array",
+        "minItems": 1
+       }
+      }
+     }
+    }
+   ]
+  },
+  "oauth2_flow": {
+   "type": "object",
+   "required": [
+    "scopes"
+   ],
+   "properties": {
+    "authorizationUrl": {
+     "title": "The authorization URL to be used",
+     "type": "string",
+     "format": "uri"
+    },
+    "tokenUrl": {
+     "title": "The token URL to be used",
+     "type": "string",
+     "format": "uri"
+    },
+    "subjectTokenType": {
+     "title": "RFC 8693 subject_token_type URN of the token presented at the tokenUrl (tokenExchange flow)",
+     "type": "string",
+     "format": "uri",
+     "examples": [
+      "urn:ietf:params:oauth:token-type:id_token",
+      "urn:ietf:params:oauth:token-type:access_token"
+     ]
+    },
+    "refreshUrl": {
+     "title": "The URL to be used for obtaining refresh tokens",
+     "type": "string",
+     "format": "uri"
+    },
+    "scopes": {
+     "title": "The available scopes for the authentication scheme",
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "signed_url_flow": {
+   "type": "object",
+   "required": [
+    "method",
+    "authorizationApi"
+   ],
+   "properties": {
+    "authorizationApi": {
+     "title": "The signed URL API endpoint to be used",
+     "type": "string",
+     "format": "uri"
+    },
+    "method": {
+     "title": "HTTP request method",
+     "type": "string",
+     "examples": [
+      "POST",
+      "GET"
+     ]
+    },
+    "responseField": {
+     "title": "Key name for the signed URL field in an authorizationApi response",
+     "type": "string"
+    },
+    "parameters": {
+     "title": "Parameter definitions for requests to the authorizationApi",
+     "additionalProperties": {
+      "type": "object",
+      "required": [
+       "in",
+       "required"
+      ],
+      "properties": {
+       "in": {
+        "title": "Location of the parameter",
+        "type": "string",
+        "examples": [
+         "query",
+         "header",
+         "body"
+        ]
+       },
+       "required": {
+        "title": "Setting for optional or required parameter",
+        "type": "boolean"
+       },
+       "description": {
+        "title": "Plain language description of the parameter",
+        "type": "string"
+       },
+       "schema": {
+        "$ref": "http://json-schema.org/draft-07/schema"
+       }
+      }
+     }
+    }
+   }
+  },
+  "class_object": {
+   "$comment": "Object for storing classes",
+   "type": "object",
+   "required": [
+    "value",
+    "name"
+   ],
+   "properties": {
+    "value": {
+     "type": "integer"
+    },
+    "description": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string",
+     "pattern": "^[0-9A-Za-z-_]+$"
+    },
+    "title": {
+     "type": "string"
+    },
+    "color_hint": {
+     "type": "string",
+     "pattern": "^([0-9A-Fa-f]{6})$"
+    },
+    "nodata": {
+     "type": "boolean"
+    },
+    "percentage": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 100
+    },
+    "count": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "bit_field_object": {
+   "$comment": "Object for storing bit fields",
+   "type": "object",
+   "required": [
+    "offset",
+    "length",
+    "classes"
+   ],
+   "properties": {
+    "offset": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "length": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "classes": {
+     "type": "array",
+     "uniqueItems": true,
+     "minItems": 1,
+     "items": {
+      "$ref": "#/definitions/class_object"
+     }
+    },
+    "roles": {
+     "type": "array",
+     "uniqueItems": true,
+     "minItems": 1,
+     "items": {
+      "type": "string"
+     }
+    },
+    "description": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string",
+     "pattern": "^[0-9A-Za-z-_]+$"
+    }
+   }
+  },
+  "link": {
+   "type": "object",
+   "required": [
+    "rel",
+    "href"
+   ],
+   "properties": {
+    "href": {
+     "type": "string",
+     "format": "iri-reference",
+     "minLength": 1
+    },
+    "rel": {
+     "type": "string",
+     "minLength": 1
+    },
+    "type": {
+     "type": "string"
+    },
+    "title": {
+     "type": "string"
+    }
+   }
+  },
+  "roles": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "minLength": 1
+   }
+  },
+  "variable": {
+   "title": "Variable Object",
+   "type": "object",
+   "required": [
+    "dimensions"
+   ],
+   "properties": {
+    "variable_type": {
+     "type": "string",
+     "enum": [
+      "data",
+      "auxiliary"
+     ]
+    },
+    "description": {
+     "$ref": "#/definitions/description"
+    },
+    "dimensions": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "values": {
+     "type": "array",
+     "minItems": 1
+    },
+    "extent": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 2,
+     "items": {
+      "type": [
+       "string",
+       "number",
+       "null"
+      ]
+     }
+    },
+    "unit": {
+     "$ref": "#/definitions/unit"
+    },
+    "nodata": {
+     "$ref": "#/definitions/nodata"
+    },
+    "data_type": {
+     "$ref": "#/definitions/data_type"
+    }
+   }
+  },
+  "vector_dimension": {
+   "title": "Spatial Vector Dimension Object",
+   "type": "object",
+   "required": [
+    "type",
+    "bbox"
+   ],
+   "properties": {
+    "type": {
+     "type": "string",
+     "const": "geometry"
+    },
+    "axes": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "enum": [
+       "x",
+       "y",
+       "z"
+      ]
+     }
+    },
+    "description": {
+     "$ref": "#/definitions/description"
+    },
+    "bbox": {
+     "title": "Spatial extent",
+     "type": "array",
+     "oneOf": [
+      {
+       "minItems": 4,
+       "maxItems": 4
+      },
+      {
+       "minItems": 6,
+       "maxItems": 6
+      }
+     ],
+     "items": {
+      "type": "number"
+     }
+    },
+    "values": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "description": "WKT or Identifier",
+      "type": "string"
+     }
+    },
+    "geometry_types": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "enum": [
+       "Point",
+       "MultiPoint",
+       "LineString",
+       "MultiLineString",
+       "Polygon",
+       "MultiPolygon",
+       "GeometryCollection"
+      ]
+     }
+    },
+    "reference_system": {
+     "$ref": "#/definitions/reference_system_spatial"
+    }
+   }
+  },
+  "horizontal_spatial_dimension": {
+   "title": "Horizontal Spatial Raster Dimension Object",
+   "type": "object",
+   "required": [
+    "type",
+    "axis",
+    "extent"
+   ],
+   "properties": {
+    "type": {
+     "$ref": "#/definitions/type_spatial"
+    },
+    "axis": {
+     "$ref": "#/definitions/axis_xy"
+    },
+    "description": {
+     "$ref": "#/definitions/description"
+    },
+    "extent": {
+     "$ref": "#/definitions/extent_closed"
+    },
+    "values": {
+     "$ref": "#/definitions/values_numeric"
+    },
+    "step": {
+     "$ref": "#/definitions/step"
+    },
+    "unit": {
+     "$ref": "#/definitions/unit"
+    },
+    "reference_system": {
+     "$ref": "#/definitions/reference_system_spatial"
+    }
+   }
+  },
+  "vertical_spatial_dimension": {
+   "title": "Vertical Spatial Dimension Object",
+   "type": "object",
+   "anyOf": [
+    {
+     "required": [
+      "type",
+      "axis",
+      "extent"
+     ]
+    },
+    {
+     "required": [
+      "type",
+      "axis",
+      "values"
+     ]
+    }
+   ],
+   "properties": {
+    "type": {
+     "$ref": "#/definitions/type_spatial"
+    },
+    "axis": {
+     "$ref": "#/definitions/axis_z"
+    },
+    "description": {
+     "$ref": "#/definitions/description"
+    },
+    "extent": {
+     "$ref": "#/definitions/extent_open"
+    },
+    "values": {
+     "$ref": "#/definitions/values"
+    },
+    "step": {
+     "$ref": "#/definitions/step"
+    },
+    "unit": {
+     "$ref": "#/definitions/unit"
+    },
+    "reference_system": {
+     "$ref": "#/definitions/reference_system_spatial"
+    }
+   }
+  },
+  "temporal_dimension": {
+   "title": "Temporal Dimension Object",
+   "type": "object",
+   "required": [
+    "type",
+    "extent"
+   ],
+   "not": {
+    "required": [
+     "axis"
+    ]
+   },
+   "properties": {
+    "type": {
+     "type": "string",
+     "const": "temporal"
+    },
+    "description": {
+     "$ref": "#/definitions/description"
+    },
+    "values": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "string"
+     }
+    },
+    "extent": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 2,
+     "items": {
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    },
+    "step": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "unit": {
+     "$ref": "#/definitions/unit"
+    }
+   }
+  },
+  "additional_dimension": {
+   "title": "Additional Dimension Object",
+   "type": "object",
+   "anyOf": [
+    {
+     "required": [
+      "type",
+      "extent"
+     ]
+    },
+    {
+     "required": [
+      "type",
+      "values"
+     ]
+    }
+   ],
+   "not": {
+    "required": [
+     "axis"
+    ]
+   },
+   "properties": {
+    "type": {
+     "type": "string",
+     "not": {
+      "enum": [
+       "spatial",
+       "geometry"
+      ]
+     }
+    },
+    "description": {
+     "$ref": "#/definitions/description"
+    },
+    "extent": {
+     "$ref": "#/definitions/extent_open"
+    },
+    "values": {
+     "$ref": "#/definitions/values"
+    },
+    "step": {
+     "$ref": "#/definitions/step"
+    },
+    "unit": {
+     "$ref": "#/definitions/unit"
+    },
+    "reference_system": {
+     "type": "string"
+    },
+    "dimensions": {
+     "type": "array",
+     "items": {
+      "type": [
+       "string"
+      ]
+     }
+    }
+   }
+  },
+  "description": {
+   "type": "string"
+  },
+  "unit": {
+   "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
+   "type": "string"
+  },
+  "nodata": {
+   "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
+   "oneOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "string",
+     "enum": [
+      "nan",
+      "inf",
+      "-inf"
+     ]
+    }
+   ]
+  },
+  "data_type": {
+   "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
+   "type": "string",
+   "enum": [
+    "int8",
+    "int16",
+    "int32",
+    "int64",
+    "uint8",
+    "uint16",
+    "uint32",
+    "uint64",
+    "float16",
+    "float32",
+    "float64",
+    "cint16",
+    "cint32",
+    "cfloat32",
+    "cfloat64",
+    "other"
+   ]
+  },
+  "step": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "values": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "oneOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "string"
+     }
+    ]
+   }
+  },
+  "values_numeric": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "number"
+   }
+  },
+  "extent_open": {
+   "type": "array",
+   "minItems": 2,
+   "maxItems": 2,
+   "items": {
+    "type": [
+     "number",
+     "null"
+    ]
+   }
+  },
+  "extent_closed": {
+   "type": "array",
+   "minItems": 2,
+   "maxItems": 2,
+   "items": {
+    "type": "number"
+   }
+  },
+  "axis_xy": {
+   "type": "string",
+   "enum": [
+    "x",
+    "y"
+   ]
+  },
+  "axis_z": {
+   "type": "string",
+   "const": "z"
+  },
+  "type_spatial": {
+   "type": "string",
+   "const": "spatial"
+  },
+  "reference_system_spatial": {
+   "oneOf": [
+    {
+     "description": "WKT2",
+     "type": "string"
+    },
+    {
+     "description": "EPSG code",
+     "type": "integer",
+     "minimum": 0
+    },
+    {
+     "$ref": "https://proj.org/schemas/v0.7/projjson.schema.json"
+    }
+   ],
+   "default": 4326
+  },
+  "object_with_integer_properties": {
+   "type": "object",
+   "patternProperties": {
+    ".*": {
+     "type": "integer"
+    }
+   }
+  },
+  "name": {
+   "type": "string",
+   "minLength": 1
+  }
+ }
+}
