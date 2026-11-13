@@ -1,0 +1,209 @@
+{
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://j-musial.github.io/copernicus/v0.1.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "S3A_OL_2_LRR____20260101T100000_20260101T110000_20260102T000000",
+  "bbox": [
+    10,
+    50,
+    20,
+    60
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          10,
+          50
+        ],
+        [
+          20,
+          50
+        ],
+        [
+          20,
+          60
+        ],
+        [
+          10,
+          60
+        ],
+        [
+          10,
+          50
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2026-01-01T10:00:00Z",
+    "copernicus:cloud_cover": 12.5,
+    "copernicus:snow_cover": 0.5,
+    "copernicus:instrument_mode": "EW",
+    "copernicus:frequency_band": "C",
+    "copernicus:center_frequency": 5.405,
+    "copernicus:bandwidth": 0.056,
+    "copernicus:polarizations": [
+      "HH",
+      "HV"
+    ],
+    "copernicus:product_type": "GRD",
+    "copernicus:resolution_range": 50,
+    "copernicus:resolution_azimuth": 50,
+    "copernicus:pixel_spacing_range": 25,
+    "copernicus:pixel_spacing_azimuth": 25,
+    "copernicus:observation_direction": "right",
+    "copernicus:platform_international_designator": "2016-011A",
+    "copernicus:orbit_state": "descending",
+    "copernicus:absolute_orbit": 45234,
+    "copernicus:relative_orbit": 108,
+    "copernicus:anx_datetime": "2026-01-01T09:14:32Z",
+    "copernicus:orbit_cycle": 27,
+    "copernicus:off_nadir": 12.3,
+    "copernicus:incidence_angle": 32.1,
+    "copernicus:azimuth": 95.4,
+    "copernicus:sun_azimuth": 160.2,
+    "copernicus:sun_elevation": 24.8,
+    "copernicus:level": "L2",
+    "copernicus:facility": "Copernicus Processing Centre",
+    "copernicus:version": "2.34",
+    "copernicus:software": {
+      "IPF": "002.71"
+    },
+    "copernicus:lineage": "S3A_OL_1_EFR -> S3A_OL_2_LRR",
+    "copernicus:expression": {
+      "format": "odata",
+      "expression": "band1/band2"
+    },
+    "copernicus:type": "OL_2_LRR___",
+    "copernicus:timeliness": "NR",
+    "copernicus:timeliness_category": "near-real-time",
+    "copernicus:acquisition_type": "nominal",
+    "copernicus:quality_status": "nominal",
+    "copernicus:code": "EPSG:4326",
+    "copernicus:shape": [
+      1200,
+      1200
+    ],
+    "copernicus:transform": [
+      0.0083,
+      0,
+      10,
+      0,
+      -0.0083,
+      60
+    ],
+    "copernicus:grid_code": "MGRS-31UCS",
+    "copernicus:country": "PL",
+    "copernicus:name": "Europe",
+    "copernicus:published": "2026-01-02T00:00:00Z",
+    "copernicus:expires": "2027-01-02T00:00:00Z",
+    "copernicus:datatake_id": "GS2A_20260101T100000_034568",
+    "copernicus:instrument_configuration_id": 12,
+    "copernicus:origin_datetime": "2026-01-01T09:59:58Z",
+    "copernicus:doi": "10.5281/zenodo.1234567",
+    "copernicus:order_status": "orderable"
+  },
+  "assets": {
+    "manifest": {
+      "href": "https://datastore.example.com/S3A_OL_2_LRR/manifest.xml",
+      "type": "application/xml",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "ogvi": {
+      "href": "s3://eodata/S3A_OL_2_LRR/ogvi.nc",
+      "type": "application/netcdf",
+      "title": "Ocean colour generalised vegetation index",
+      "roles": [
+        "data"
+      ],
+      "copernicus:storage_refs": [
+        "cop-cds"
+      ],
+      "copernicus:storage_schemes": {
+        "cop-cds": {
+          "type": "aws-s3",
+          "platform": "https://{bucket}.s3.{region}.amazonaws.com",
+          "region": "eu-central-1",
+          "requester_pays": false
+        }
+      },
+      "copernicus:alternate": {
+        "aws": {
+          "href": "https://data-aws.example.com/ogvi.nc",
+          "type": "application/netcdf",
+          "copernicus:alternate_name": "AWS mirror"
+        }
+      },
+      "copernicus:open_kwargs": {
+        "engine": "netcdf4",
+        "decode_cf": true
+      },
+      "bands": [
+        {
+          "name": "ogvi",
+          "copernicus:common_name": "green",
+          "copernicus:center_wavelength": 0.56,
+          "copernicus:full_width_half_max": 0.02,
+          "copernicus:solar_illumination": 1400,
+          "copernicus:bits_per_sample": 16,
+          "copernicus:sampling": "area",
+          "copernicus:scale": 0.0001,
+          "copernicus:offset": 0,
+          "copernicus:spatial_resolution": 300,
+          "copernicus:standard_name": "volume_absorption_coefficient_of_radiative_flux_in_sea_water",
+          "copernicus:unit": "m-1",
+          "copernicus:classes": [
+            {
+              "value": 0,
+              "name": "nodata",
+              "nodata": true,
+              "color_hint": "000000"
+            },
+            {
+              "value": 1,
+              "name": "water",
+              "color_hint": "005CE6"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://catalog.example.com/items/S3A_OL_2_LRR_20260101T100000"
+    },
+    {
+      "rel": "license",
+      "href": "https://example.com/license",
+      "type": "text/html"
+    },
+    {
+      "rel": "xyz",
+      "href": "https://tile.example.com/{s}/ogvi/{z}/{x}/{y}.png",
+      "type": "image/png",
+      "copernicus:servers": [
+        "https://tile1.example.com",
+        "https://tile2.example.com"
+      ]
+    },
+    {
+      "rel": "wms",
+      "href": "https://maps.example.com/wms",
+      "type": "image/png",
+      "copernicus:wms_layers": [
+        "ogvi"
+      ],
+      "copernicus:wms_styles": [
+        "default"
+      ]
+    }
+  ]
+}
