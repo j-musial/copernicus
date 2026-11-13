@@ -1,0 +1,2957 @@
+{
+ "fields": [
+  {
+   "name": "copernicus:absolute_orbit",
+   "type": "integer",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The absolute orbit number at the start of acquisition. When the orbit changes during data acquisition (i.e., the acquisition spans multiple orbits), use the absolute orbit number at the start of the acquisition."
+  },
+  {
+   "name": "copernicus:acquisition_station",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The acquisition station (ground station) where the satellite data was downlinked. Equivalent to `eop:acquisition_station` in OGC 10-157r4 and OGC 17-003r2."
+  },
+  {
+   "name": "copernicus:acquisition_type",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "product",
+     "title": "Product",
+     "url": "sources/product-v1.1.0.md"
+    }
+   ],
+   "desc": "The acquisition type of the product."
+  },
+  {
+   "name": "copernicus:alternate",
+   "type": "object",
+   "scope": [
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "alternate-assets",
+     "title": "Alternate Assets",
+     "url": "sources/alternate-assets-v1.2.0.md"
+    }
+   ],
+   "desc": "Alternate asset locations keyed by provider name, each an Asset Object without href."
+  },
+  {
+   "name": "copernicus:alternate_name",
+   "type": "string",
+   "scope": [
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "alternate-assets",
+     "title": "Alternate Assets",
+     "url": "sources/alternate-assets-v1.2.0.md"
+    }
+   ],
+   "desc": "A human readable name for the alternate asset."
+  },
+  {
+   "name": "copernicus:anx_datetime",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node) Crossing (ANX) time, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)."
+  },
+  {
+   "name": "copernicus:auth_refs",
+   "type": "array of string",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "authentication",
+     "title": "Authentication",
+     "url": "sources/authentication-v1.2.0.md"
+    }
+   ],
+   "desc": "The names of authentication schemes (keys of copernicus:auth_schemes) that apply to an asset or link."
+  },
+  {
+   "name": "copernicus:auth_schemes",
+   "type": "map of auth_scheme",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "authentication",
+     "title": "Authentication",
+     "url": "sources/authentication-v1.2.0.md"
+    }
+   ],
+   "desc": "Dictionary of named authentication schemes that guard access to assets or links."
+  },
+  {
+   "name": "copernicus:azimuth",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360)."
+  },
+  {
+   "name": "copernicus:bandwidth",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The range bandwidth of the SAR instrument, in gigahertz (GHz), representing the full bandwidth used in range compression and image formation."
+  },
+  {
+   "name": "copernicus:bbox",
+   "type": "array of number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "Bounding box of the Item in the asset CRS in 2 or 3 dimensions."
+  },
+  {
+   "name": "copernicus:beam_ids",
+   "type": "array of string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "Composition of the swath of the SAR acquision referencing the beam identifiers."
+  },
+  {
+   "name": "copernicus:bitfields",
+   "type": "[bit_field_object](#bit_field_object)",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "classification",
+     "title": "Classification",
+     "url": "sources/classification-v2.0.0.md"
+    }
+   ],
+   "desc": "Classes stored in bit fields in the raster"
+  },
+  {
+   "name": "copernicus:bits_per_sample",
+   "type": "integer",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "The actual number of bits used for this band. Normally only present when the number of bits is non-standard for the `datatype`, such as when a 1 bit TIFF is represented as byte."
+  },
+  {
+   "name": "copernicus:cell_methods",
+   "type": "array of string/null",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Data Cube Variables"
+   ],
+   "sources": [
+    {
+     "id": "cf",
+     "title": "Climate and Forecast (CF) Conventions",
+     "url": "sources/cf-v1.0.0.md"
+    }
+   ],
+   "desc": "null]"
+  },
+  {
+   "name": "copernicus:center_frequency",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "RECOMMENDED. The center frequency of the radar signal transmitted by the instrument, in gigahertz (GHz)."
+  },
+  {
+   "name": "copernicus:center_wavelength",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "eo",
+     "title": "Electro-Optical",
+     "url": "sources/eo-v2.0.0.md"
+    }
+   ],
+   "desc": "The center wavelength of the band, in micrometers (\u03bcm)."
+  },
+  {
+   "name": "copernicus:centroid",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "Coordinates representing the centroid of the Item (in lat/long)"
+  },
+  {
+   "name": "copernicus:chip_size",
+   "type": "array of integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "Chip size in pixels as `[height, width]`."
+  },
+  {
+   "name": "copernicus:citation",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections",
+    "Catalogs"
+   ],
+   "sources": [
+    {
+     "id": "scientific",
+     "title": "Scientific Citation",
+     "url": "sources/scientific-v1.0.0.md"
+    }
+   ],
+   "desc": "The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively."
+  },
+  {
+   "name": "copernicus:classes",
+   "type": "[class_object](#class_object)",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "classification",
+     "title": "Classification",
+     "url": "sources/classification-v2.0.0.md"
+    }
+   ],
+   "desc": "Classes stored in raster or bands"
+  },
+  {
+   "name": "copernicus:cloud_cover",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "eo",
+     "title": "Electro-Optical",
+     "url": "sources/eo-v2.0.0.md"
+    }
+   ],
+   "desc": "Estimate of cloud cover as a percentage (0-100)."
+  },
+  {
+   "name": "copernicus:code",
+   "type": "string or null",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "null"
+  },
+  {
+   "name": "copernicus:columns",
+   "type": "array of object",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "A list of Column Objects describing each column."
+  },
+  {
+   "name": "copernicus:common_name",
+   "type": "string (enum)",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "eo",
+     "title": "Electro-Optical",
+     "url": "sources/eo-v2.0.0.md"
+    }
+   ],
+   "desc": "The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names)."
+  },
+  {
+   "name": "copernicus:contacts",
+   "type": "array of object",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "**REQUIRED.** A list of contacts qualified by their role."
+  },
+  {
+   "name": "copernicus:country",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "region",
+     "title": "Region",
+     "url": "sources/region-v0.1.0.md"
+    }
+   ],
+   "desc": "ISO 3166-1 alpha-2 country code. Two-letter country code for the country that is primarily covered by the data."
+  },
+  {
+   "name": "copernicus:datastrip_id",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "eopf",
+     "title": "EOPF",
+     "url": "sources/eopf-v1.2.0.md"
+    },
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "The identifier of the datastrip, i.e. the part of a datatake that the ground segment processed as one unit. See [Datastrip ID](#datastrip-id) for details."
+  },
+  {
+   "name": "copernicus:datatake_id",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "eopf",
+     "title": "EOPF",
+     "url": "sources/eopf-v1.2.0.md"
+    }
+   ],
+   "desc": "Datatake identification. Examples: for S1, datatake_id = 12032; for S2, datatake_id = GS2A_20231215T103431_044292_N05.10"
+  },
+  {
+   "name": "copernicus:datetime",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "Processing date and time of the corresponding data formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), in UTC."
+  },
+  {
+   "name": "copernicus:description",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Data Cube Variables"
+   ],
+   "sources": [
+    {
+     "id": "cf",
+     "title": "Climate and Forecast (CF) Conventions",
+     "url": "sources/cf-v1.0.0.md"
+    }
+   ],
+   "desc": "Corresponds to the [CF `long_name`](https://cfconventions.org/cf-conventions/cf-conventions.html#long-name)."
+  },
+  {
+   "name": "copernicus:dimensions",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "datacube",
+     "title": "Data Cube",
+     "url": "sources/datacube-v2.3.0.md"
+    }
+   ],
+   "desc": "**REQUIRED.** Uniquely named dimensions of the datacube."
+  },
+  {
+   "name": "copernicus:doi",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections",
+    "Catalogs"
+   ],
+   "sources": [
+    {
+     "id": "scientific",
+     "title": "Scientific Citation",
+     "url": "sources/scientific-v1.0.0.md"
+    }
+   ],
+   "desc": "The DOI of the data, e.g. `10.1000/xyz123`. This MUST NOT be a DOIs link. For all DOI names respective DOI links SHOULD be added to the links section (see chapter \"Relation types\")."
+  },
+  {
+   "name": "copernicus:embedding_dimensions",
+   "type": "array of integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. Embedding dimensions as an array of sizes, e.g. `[768]` for a single 768-dimensional vector."
+  },
+  {
+   "name": "copernicus:embedding_type",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. Embedding type: `pixel` or `chip`."
+  },
+  {
+   "name": "copernicus:expires",
+   "type": "string",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "timestamps",
+     "title": "Timestamps",
+     "url": "sources/timestamps-v1.1.0.md"
+    }
+   ],
+   "desc": "Date and time the corresponding data (see below) expires (is not valid any longer), in UTC."
+  },
+  {
+   "name": "copernicus:expression",
+   "type": "object",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "An expression or processing chain that describes how the data has been processed. Alternatively, you can also link to a processing chain with the relation type `processing-expression` (see below)."
+  },
+  {
+   "name": "copernicus:facility",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites."
+  },
+  {
+   "name": "copernicus:frequency_band",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "RECOMMENDED. The common name for the frequency band to make it easier to search for bands across instruments. See section \"Common Frequency Band Names\" for a list of accepted names."
+  },
+  {
+   "name": "copernicus:full_width_half_max",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "eo",
+     "title": "Electro-Optical",
+     "url": "sources/eo-v2.0.0.md"
+    }
+   ],
+   "desc": "Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (\u03bcm)."
+  },
+  {
+   "name": "copernicus:geometry",
+   "type": "Geometry.json",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "Defines the footprint of this Item."
+  },
+  {
+   "name": "copernicus:geometry_types",
+   "type": "array of string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Table Columns"
+   ],
+   "sources": [
+    {
+     "id": "vector",
+     "title": "Vector",
+     "url": "sources/vector-v0.1.0.md"
+    }
+   ],
+   "desc": "A list of the geometry types present in the dataset."
+  },
+  {
+   "name": "copernicus:grid_code",
+   "type": "string",
+   "scope": [
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "grid",
+     "title": "Grid",
+     "url": "sources/grid-v1.1.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. The identifier for the grid element associated with the Item."
+  },
+  {
+   "name": "copernicus:grid_id",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "Grid system the chips are aligned to. See [Grid IDs](#grid-ids)."
+  },
+  {
+   "name": "copernicus:histogram",
+   "type": "object",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "Histogram distribution information of the pixels values in the band."
+  },
+  {
+   "name": "copernicus:incidence_angle",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90)."
+  },
+  {
+   "name": "copernicus:instrument_configuration_id",
+   "type": "integer",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "eopf",
+     "title": "EOPF",
+     "url": "sources/eopf-v1.2.0.md"
+    }
+   ],
+   "desc": "The instrument configuration ID is specific to S1 SAR instrument and refers to the onboard configuration. Each version of it has a specific identifier called \"Instrument Configuration ID\" (ICID) corresponding to a specific number. For more information, cf. [\"What is the instrument configuration ID (ICID) ?\"](https://sar-mpc.eu/about/faq/)"
+  },
+  {
+   "name": "copernicus:instrument_mode",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "altimetry",
+     "title": "Altimetry",
+     "url": "sources/altimetry-v0.1.0.md"
+    },
+    {
+     "id": "eopf",
+     "title": "EOPF",
+     "url": "sources/eopf-v1.2.0.md"
+    },
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "Mode of the altimetry instrument used to collect the data."
+  },
+  {
+   "name": "copernicus:instrument_type",
+   "type": "string (enum)",
+   "scope": [
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "altimetry",
+     "title": "Altimetry",
+     "url": "sources/altimetry-v0.1.0.md"
+    }
+   ],
+   "desc": "Type of altimetry instrument used to collect the data."
+  },
+  {
+   "name": "copernicus:level",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels)."
+  },
+  {
+   "name": "copernicus:lineage",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for \"GRD\" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation."
+  },
+  {
+   "name": "copernicus:looks_azimuth",
+   "type": "integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path."
+  },
+  {
+   "name": "copernicus:looks_equivalent_number",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The equivalent number of looks (ENL)."
+  },
+  {
+   "name": "copernicus:looks_range",
+   "type": "integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path."
+  },
+  {
+   "name": "copernicus:mmu",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Table Columns"
+   ],
+   "sources": [
+    {
+     "id": "vector",
+     "title": "Vector",
+     "url": "sources/vector-v0.1.0.md"
+    }
+   ],
+   "desc": "Minimum Mapping Unit - the smallest polygon area represented."
+  },
+  {
+   "name": "copernicus:mmw",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Table Columns"
+   ],
+   "sources": [
+    {
+     "id": "vector",
+     "title": "Vector",
+     "url": "sources/vector-v0.1.0.md"
+    }
+   ],
+   "desc": "Minimal Mapping Width - the smallest real-world width represented as polygon."
+  },
+  {
+   "name": "copernicus:moon_azimuth",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "Moon azimuth angle. From the scene center point on the ground, this is the angle between truth north and the moon. Measured clockwise in degrees (0-360)."
+  },
+  {
+   "name": "copernicus:moon_elevation",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "Moon elevation angle. The angle from the tangent of the scene center point to the moon. Measured from the horizon in degrees (`0`-`90`)."
+  },
+  {
+   "name": "copernicus:name",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "region",
+     "title": "Region",
+     "url": "sources/region-v0.1.0.md"
+    }
+   ],
+   "desc": "A human-readable name of the relevant region."
+  },
+  {
+   "name": "copernicus:nominal_track",
+   "type": "coordinates",
+   "scope": [
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "altimetry",
+     "title": "Altimetry",
+     "url": "sources/altimetry-v0.1.0.md"
+    }
+   ],
+   "desc": "An array of coordinates used to define the nominal track on the earths surface. This value is recommended ONLY if the item geometry is not representative of the acquisition track."
+  },
+  {
+   "name": "copernicus:observation_direction",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`."
+  },
+  {
+   "name": "copernicus:off_nadir",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90)."
+  },
+  {
+   "name": "copernicus:offset",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "Number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance)."
+  },
+  {
+   "name": "copernicus:open_kwargs",
+   "type": "object",
+   "scope": [
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "xarray-assets",
+     "title": "Xarray Assets",
+     "url": "sources/xarray-assets-v1.0.0.md"
+    }
+   ],
+   "desc": "Keyword arguments to provide to the xarray opener"
+  },
+  {
+   "name": "copernicus:orbit_cycle",
+   "type": "integer",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The number of repeat cycle done by the satellite at the time of the acquisition. [Repeat cycle](https://ltb.itc.utwente.nl/page/498/concept/81577) is the time between two successive identical orbits."
+  },
+  {
+   "name": "copernicus:orbit_state",
+   "type": "string (enum)",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, `geostationary` for geosynchronous satellites, or `crossing` when the acquisition spans a polar crossing."
+  },
+  {
+   "name": "copernicus:orbit_state_vectors",
+   "type": "map of array",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The state vectors of the satellite at the time of acquisition."
+  },
+  {
+   "name": "copernicus:order_date",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "order",
+     "title": "Order",
+     "url": "sources/order-v1.1.0.md"
+    }
+   ],
+   "desc": "Indicates the order submission time, in UTC and formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)."
+  },
+  {
+   "name": "copernicus:order_expiration_date",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "order",
+     "title": "Order",
+     "url": "sources/order-v1.1.0.md"
+    }
+   ],
+   "desc": "**DEPRECATED.** Indicates the validity time of the order, in UTC and formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Use [`expires` from the timestamps extension](https://github.com/stac-extensions/timestamps/) instead."
+  },
+  {
+   "name": "copernicus:order_id",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "order",
+     "title": "Order",
+     "url": "sources/order-v1.1.0.md"
+    }
+   ],
+   "desc": "Identifier of the order."
+  },
+  {
+   "name": "copernicus:order_status",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "order",
+     "title": "Order",
+     "url": "sources/order-v1.1.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. Describe the status of the ordering. One of the value listed [here](#orderstatus)"
+  },
+  {
+   "name": "copernicus:origin_datetime",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "eopf",
+     "title": "EOPF",
+     "url": "sources/eopf-v1.2.0.md"
+    }
+   ],
+   "desc": "Date time of the input data considered to create the item. Example: for PRIP, time of the availability of all CADU data on the CADIP/XBIP"
+  },
+  {
+   "name": "copernicus:original_data_type",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "Data type before quantization. Uses the same [data type values](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md#data-types) as `data_type`."
+  },
+  {
+   "name": "copernicus:pixel_spacing_azimuth",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`."
+  },
+  {
+   "name": "copernicus:pixel_spacing_range",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`."
+  },
+  {
+   "name": "copernicus:platform_international_designator",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The International Designator, also known as COSPAR ID, and NSSDCA ID"
+  },
+  {
+   "name": "copernicus:pmtiles_layers",
+   "type": "array of string",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "The PMTiles layers to display."
+  },
+  {
+   "name": "copernicus:polarizations",
+   "type": "array of string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "RECOMMENDED. Any combination of polarizations."
+  },
+  {
+   "name": "copernicus:primary_datetime",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "The primary date/time column name."
+  },
+  {
+   "name": "copernicus:primary_geometry",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "The primary geometry column name."
+  },
+  {
+   "name": "copernicus:product_status",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "product",
+     "title": "Product",
+     "url": "sources/product-v1.1.0.md"
+    }
+   ],
+   "desc": "The lifecycle/status of the product."
+  },
+  {
+   "name": "copernicus:product_type",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "product",
+     "title": "Product",
+     "url": "sources/product-v1.1.0.md"
+    },
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The product type."
+  },
+  {
+   "name": "copernicus:projjson",
+   "type": "any",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "null"
+  },
+  {
+   "name": "copernicus:publications",
+   "type": "array of object",
+   "scope": [
+    "Item Properties",
+    "Collections",
+    "Catalogs"
+   ],
+   "sources": [
+    {
+     "id": "scientific",
+     "title": "Scientific Citation",
+     "url": "sources/scientific-v1.0.0.md"
+    }
+   ],
+   "desc": "List of relevant publications referencing and describing the data."
+  },
+  {
+   "name": "copernicus:published",
+   "type": "string",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "timestamps",
+     "title": "Timestamps",
+     "url": "sources/timestamps-v1.1.0.md"
+    }
+   ],
+   "desc": "Date and time the corresponding data (see below) was published the first time, in UTC."
+  },
+  {
+   "name": "copernicus:quality_status",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "product",
+     "title": "Product",
+     "url": "sources/product-v1.1.0.md"
+    }
+   ],
+   "desc": "The quality status of the product: `nominal` or `degraded`."
+  },
+  {
+   "name": "copernicus:quantization_method",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "Quantization method (e.g. `linear`)."
+  },
+  {
+   "name": "copernicus:reference_scale",
+   "type": "integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Table Columns"
+   ],
+   "sources": [
+    {
+     "id": "vector",
+     "title": "Vector",
+     "url": "sources/vector-v0.1.0.md"
+    }
+   ],
+   "desc": "Representative fraction denominator (e.g., 50000 for 1:50,000)."
+  },
+  {
+   "name": "copernicus:relative_burst",
+   "type": "integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "Identification number that uniquely identifies a burst cycle within each repeat cycle."
+  },
+  {
+   "name": "copernicus:relative_orbit",
+   "type": "integer",
+   "scope": [
+    "Item Properties",
+    "Collections"
+   ],
+   "sources": [
+    {
+     "id": "sat",
+     "title": "Satellite",
+     "url": "sources/sat-v1.2.0.md"
+    }
+   ],
+   "desc": "The relative orbit number at the start of acquisition. When the orbit changes during data acquisition (i.e., the acquisition spans multiple orbits), use the relative orbit number at the start of the acquisition."
+  },
+  {
+   "name": "copernicus:renders",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Dictionary of rendering instructions that can be viewed, keyed by a unique render name."
+  },
+  {
+   "name": "copernicus:resolution_azimuth",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m)."
+  },
+  {
+   "name": "copernicus:resolution_range",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "sar",
+     "title": "Synthetic Aperture Radar",
+     "url": "sources/sar-v1.3.2.md"
+    }
+   ],
+   "desc": "The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m)."
+  },
+  {
+   "name": "copernicus:row_count",
+   "type": "number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "The number of rows in the dataset."
+  },
+  {
+   "name": "copernicus:sampling",
+   "type": "string (enum)",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "One of `area` or `point`. Indicates whether a pixel value should be assumed to represent a sampling over the region of the pixel or a point sample at the center of the pixel."
+  },
+  {
+   "name": "copernicus:sampling_rate",
+   "type": "number",
+   "scope": [
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "altimetry",
+     "title": "Altimetry",
+     "url": "sources/altimetry-v0.1.0.md"
+    }
+   ],
+   "desc": "Sampling rate of the altimetry instrument in Hz."
+  },
+  {
+   "name": "copernicus:scale",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "Multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance)."
+  },
+  {
+   "name": "copernicus:season",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "vpp",
+     "title": "Vegetation Phenology and Productivity",
+     "url": "sources/vpp-v0.1.0.md"
+    }
+   ],
+   "desc": "The VPP season number. One of `S1` or `S2`. See below for details."
+  },
+  {
+   "name": "copernicus:servers",
+   "type": "array of string",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "The servers to substitute for the {s} variable in the link href."
+  },
+  {
+   "name": "copernicus:shape",
+   "type": "array of integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "Number of pixels in Y and X directions for the default grid"
+  },
+  {
+   "name": "copernicus:snow_cover",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "eo",
+     "title": "Electro-Optical",
+     "url": "sources/eo-v2.0.0.md"
+    }
+   ],
+   "desc": "Estimate of snow and ice cover as a percentage (0-100)."
+  },
+  {
+   "name": "copernicus:software",
+   "type": "map of string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "A dictionary with name/version for key/value describing one or more applications or libraries that were involved during the production of the data for provenance purposes."
+  },
+  {
+   "name": "copernicus:solar_illumination",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "eo",
+     "title": "Electro-Optical",
+     "url": "sources/eo-v2.0.0.md"
+    }
+   ],
+   "desc": "The solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers."
+  },
+  {
+   "name": "copernicus:spatial_resolution",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "Average spatial resolution (in meters) of the pixels in the band."
+  },
+  {
+   "name": "copernicus:standard_name",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Data Cube Variables"
+   ],
+   "sources": [
+    {
+     "id": "cf",
+     "title": "Climate and Forecast (CF) Conventions",
+     "url": "sources/cf-v1.0.0.md"
+    }
+   ],
+   "desc": "Corresponds to the [CF Standard Name](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html)."
+  },
+  {
+   "name": "copernicus:stats_catalogs",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Catalogs"
+   ],
+   "sources": [
+    {
+     "id": "stats",
+     "title": "Stats",
+     "url": "sources/stats-v0.2.0.md"
+    }
+   ],
+   "desc": "A lookup of statistics for all child catalogs."
+  },
+  {
+   "name": "copernicus:stats_collections",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Catalogs"
+   ],
+   "sources": [
+    {
+     "id": "stats",
+     "title": "Stats",
+     "url": "sources/stats-v0.2.0.md"
+    }
+   ],
+   "desc": "A lookup of statistics for all child collections."
+  },
+  {
+   "name": "copernicus:stats_items",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Catalogs"
+   ],
+   "sources": [
+    {
+     "id": "stats",
+     "title": "Stats",
+     "url": "sources/stats-v0.2.0.md"
+    }
+   ],
+   "desc": "A lookup of statistics for all child items."
+  },
+  {
+   "name": "copernicus:storage_options",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    },
+    {
+     "id": "xarray-assets",
+     "title": "Xarray Assets",
+     "url": "sources/xarray-assets-v1.0.0.md"
+    }
+   ],
+   "desc": "**DEPRECATED** Additional keywords for opening the dataset."
+  },
+  {
+   "name": "copernicus:storage_refs",
+   "type": "array of string",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "storage",
+     "title": "Storage",
+     "url": "sources/storage-v2.0.0.md"
+    }
+   ],
+   "desc": "A property that specifies which schemes in copernicus:storage_schemes may be used to access an Asset or Link. Each value must be one of the keys defined in copernicus:storage_schemes."
+  },
+  {
+   "name": "copernicus:storage_schemes",
+   "type": "map of objects",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "storage",
+     "title": "Storage",
+     "url": "sources/storage-v2.0.0.md"
+    }
+   ],
+   "desc": "A property that contains all of the storage schemes used by Assets and Links in the STAC Item, Catalog or Collection."
+  },
+  {
+   "name": "copernicus:stride",
+   "type": "array of integer",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "Step between the origins of neighboring chips in pixels as `[row_stride, col_stride]`. When `stride < chip_size`, chips overlap."
+  },
+  {
+   "name": "copernicus:sub_parameter",
+   "type": "string (enum)",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "vpp",
+     "title": "Vegetation Phenology and Productivity",
+     "url": "sources/vpp-v0.1.0.md"
+    }
+   ],
+   "desc": "The VPP sub-parameter acronym. See below for the list of allowed values."
+  },
+  {
+   "name": "copernicus:subdivision",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "region",
+     "title": "Region",
+     "url": "sources/region-v0.1.0.md"
+    }
+   ],
+   "desc": "ISO 3166-2 codes for identifying the principal subdivisions (e.g., provinces or states) of a country that is primarily covered by the data. Only provide the second part of the ISO 3166-2 code to reduce redundancy."
+  },
+  {
+   "name": "copernicus:sun_azimuth",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360)."
+  },
+  {
+   "name": "copernicus:sun_elevation",
+   "type": "number",
+   "scope": [
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "view",
+     "title": "View Geometry",
+     "url": "sources/view-v1.1.0.md"
+    }
+   ],
+   "desc": "Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (`-90`-`90`). Negative values indicate the sun is below the horizon, e.g. sun elevation of -10\u00b0 means the data was captured during [nautical twilight](https://www.timeanddate.com/astronomy/different-types-twilight.html)."
+  },
+  {
+   "name": "copernicus:tables",
+   "type": "array of object",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "**DEPRECATED** A list of Table Objects (see below)."
+  },
+  {
+   "name": "copernicus:temporal_period",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "embeddings",
+     "title": "Embeddings",
+     "url": "sources/embeddings-v1.0.0.md"
+    }
+   ],
+   "desc": "Temporal compositing period as an [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations) (e.g. `P1Y`, `P3M`)."
+  },
+  {
+   "name": "copernicus:themes",
+   "type": "array of object",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "themes",
+     "title": "Themes",
+     "url": "sources/themes-v1.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED.** A knowledge organization system used to classify the STAC entity. Each element is a concept and their respective knowledge organization system / controlled vocabulary."
+  },
+  {
+   "name": "copernicus:timeliness",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "product",
+     "title": "Product",
+     "url": "sources/product-v1.1.0.md"
+    }
+   ],
+   "desc": "The average expected timeliness of the product as an [ISO 8601 Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)."
+  },
+  {
+   "name": "copernicus:timeliness_category",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets"
+   ],
+   "sources": [
+    {
+     "id": "product",
+     "title": "Product",
+     "url": "sources/product-v1.1.0.md"
+    }
+   ],
+   "desc": "A proprietary category identifier for the timeliness of the product."
+  },
+  {
+   "name": "copernicus:transform",
+   "type": "array of number",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "The affine transformation coefficients for the default grid"
+  },
+  {
+   "name": "copernicus:unit",
+   "type": "string",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Data Cube Variables"
+   ],
+   "sources": [
+    {
+     "id": "cf",
+     "title": "Climate and Forecast (CF) Conventions",
+     "url": "sources/cf-v1.0.0.md"
+    }
+   ],
+   "desc": "Corresponds to the [CF `units`](https://cfconventions.org/cf-conventions/cf-conventions.html#units)."
+  },
+  {
+   "name": "copernicus:unpublished",
+   "type": "string",
+   "scope": [
+    "Catalogs",
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "timestamps",
+     "title": "Timestamps",
+     "url": "sources/timestamps-v1.1.0.md"
+    }
+   ],
+   "desc": "Date and time the corresponding data (see below) was unpublished, in UTC."
+  },
+  {
+   "name": "copernicus:variables",
+   "type": "object",
+   "scope": [
+    "Collections",
+    "Item Properties"
+   ],
+   "sources": [
+    {
+     "id": "datacube",
+     "title": "Data Cube",
+     "url": "sources/datacube-v2.3.0.md"
+    }
+   ],
+   "desc": "Uniquely named variables of the datacube."
+  },
+  {
+   "name": "copernicus:version",
+   "type": "string",
+   "scope": [
+    "Item Properties",
+    "Assets",
+    "Bands",
+    "Providers"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "The version of the primary processing software or processing chain that produced the data. For example, this could be the processing baseline for the Sentinel missions."
+  },
+  {
+   "name": "copernicus:wkt2",
+   "type": "string or null",
+   "scope": [
+    "Collections",
+    "Item Properties",
+    "Assets",
+    "Links",
+    "Bands"
+   ],
+   "sources": [
+    {
+     "id": "projection",
+     "title": "Projection",
+     "url": "sources/projection-v2.1.0.md"
+    }
+   ],
+   "desc": "null"
+  },
+  {
+   "name": "copernicus:wms_dimensions",
+   "type": "object",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "WMS dimensions and their values."
+  },
+  {
+   "name": "copernicus:wms_layers",
+   "type": "array of string",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "The WMS layers to display."
+  },
+  {
+   "name": "copernicus:wms_styles",
+   "type": "array of string",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "The WMS styles to apply."
+  },
+  {
+   "name": "copernicus:wms_transparent",
+   "type": "boolean",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "Whether the WMS map background is transparent."
+  },
+  {
+   "name": "copernicus:wmts_dimensions",
+   "type": "object",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "WMTS dimensions and their values."
+  },
+  {
+   "name": "copernicus:wmts_encoding",
+   "type": "string (enum)",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "The encoding to use for WMTS requests: `rest` or `kvp`."
+  },
+  {
+   "name": "copernicus:wmts_layer",
+   "type": "string",
+   "scope": [
+    "Links"
+   ],
+   "sources": [
+    {
+     "id": "web-map-links",
+     "title": "Web Map Links",
+     "url": "sources/web-map-links-v1.3.0.md"
+    }
+   ],
+   "desc": "The WMTS layer identifier."
+  },
+  {
+   "name": "copernicus:renders/asset_as_band",
+   "type": "boolean",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Treat assets in `expression` as single bands. Required when expression uses multiple assets"
+  },
+  {
+   "name": "copernicus:renders/assets",
+   "type": "array",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. Array of asset keys [referencing the assets](#assets-reference) that are used to make the rendering"
+  },
+  {
+   "name": "copernicus:renders/bidx",
+   "type": "array",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Band(s) to select from each referenced asset, one entry per position in `assets` (an asset needing no sub-selection uses an empty array `[]`). Each selector is either a 1-based band index (matching the GDAL/rio-tiler/titiler convention) or a band name matching the `name` of a Band Object declared on that asset (via `eo:bands`, `raster:bands`, or the STAC [common `bands`](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#bands) construct) \u2014 useful since `name` is not required on a Band Object. See [Band references](#band-references)."
+  },
+  {
+   "name": "copernicus:renders/color_formula",
+   "type": "string",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "[Color formula](https://developmentseed.org/titiler/user_guide/rendering/#color-formula) that must be applied for a raster band"
+  },
+  {
+   "name": "copernicus:renders/colormap",
+   "type": "object",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "[Color map JSON definition](https://developmentseed.org/titiler/user_guide/rendering/#custom-colormaps) that must be applied for a raster band"
+  },
+  {
+   "name": "copernicus:renders/colormap_name",
+   "type": "string",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Color map identifier that must be applied for a raster band"
+  },
+  {
+   "name": "copernicus:renders/expression",
+   "type": "string/object/array",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Band arithmetic formula to apply to the referenced assets. The format is defined by the rendering application, e.g. a [TiTiler](https://developmentseed.org/titiler/) band math string or a [MapLibre](https://maplibre.org/maplibre-style-spec/expressions/) style expression array."
+  },
+  {
+   "name": "copernicus:renders/minmax_zoom",
+   "type": "array",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Zoom levels range applicable for the visualization"
+  },
+  {
+   "name": "copernicus:renders/nodata",
+   "type": "number/string",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Nodata value to use for this render, overriding any nodata value already defined on the referenced assets (e.g. via the [raster](https://github.com/stac-extensions/raster) extension). If not set, implementations SHOULD fall back to the asset's own nodata value."
+  },
+  {
+   "name": "copernicus:renders/resampling",
+   "type": "string",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Resampling algorithm to apply to the referenced assets. See [GDAL resampling algorithm](https://gdal.org/programs/gdalwarp.html#cmdoption-gdalwarp-r) for some examples."
+  },
+  {
+   "name": "copernicus:renders/rescale",
+   "type": "array",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "2 dimensions array of delimited Min,Max range per band. If not provided, the data will not be rescaled."
+  },
+  {
+   "name": "copernicus:renders/title",
+   "type": "string",
+   "scope": [
+    "copernicus:renders values"
+   ],
+   "sources": [
+    {
+     "id": "render",
+     "title": "Render",
+     "url": "sources/render-v2.1.0.md"
+    }
+   ],
+   "desc": "Optional title of the rendering"
+  },
+  {
+   "name": "copernicus:contacts/addresses",
+   "type": "array",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Physical location at which contact can be made."
+  },
+  {
+   "name": "copernicus:contacts/contactInstructions",
+   "type": "string",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Supplemental instructions on how or when to contact the responsible party."
+  },
+  {
+   "name": "copernicus:contacts/description",
+   "type": "string",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Detailed multi-line description to fully explain the STAC entity. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation."
+  },
+  {
+   "name": "copernicus:contacts/emails",
+   "type": "array",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Email address at which contact can be made."
+  },
+  {
+   "name": "copernicus:contacts/identifier",
+   "type": "string",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "A value uniquely identifying a contact."
+  },
+  {
+   "name": "copernicus:contacts/links",
+   "type": "array",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Links related to the contact. The link relation should be `about` and the media type must indicate the content type of the link (e.g. `text/html` for a company's web page versus `text/vcard` for a virtual contact file)."
+  },
+  {
+   "name": "copernicus:contacts/logo",
+   "type": "any",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Graphic identifying a contact. The link relation must be `icon` and the media type must be an image media type."
+  },
+  {
+   "name": "copernicus:contacts/name",
+   "type": "string",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "**REQUIRED if `organization` is missing**. The name of the responsible person."
+  },
+  {
+   "name": "copernicus:contacts/organization",
+   "type": "string",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "**REQUIRED if `name` is missing**. Organization/affiliation of the contact."
+  },
+  {
+   "name": "copernicus:contacts/phones",
+   "type": "array",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "Telephone numbers at which contact can be made."
+  },
+  {
+   "name": "copernicus:contacts/position",
+   "type": "string",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "The name of the role or position of the responsible person taken from the organization's formal organizational hierarchy or chart."
+  },
+  {
+   "name": "copernicus:contacts/roles",
+   "type": "object",
+   "scope": [
+    "copernicus:contacts values"
+   ],
+   "sources": [
+    {
+     "id": "contacts",
+     "title": "Contacts",
+     "url": "sources/contacts-v1.0.1.md"
+    }
+   ],
+   "desc": "The set of named duties, job functions and/or permissions associated with this contact. See [Roles](#roles) for recommended values."
+  },
+  {
+   "name": "copernicus:themes/concepts",
+   "type": "array",
+   "scope": [
+    "copernicus:themes values"
+   ],
+   "sources": [
+    {
+     "id": "themes",
+     "title": "Themes",
+     "url": "sources/themes-v1.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. One or more entity/concept identifers from this knowledge system."
+  },
+  {
+   "name": "copernicus:themes/scheme",
+   "type": "string",
+   "scope": [
+    "copernicus:themes values"
+   ],
+   "sources": [
+    {
+     "id": "themes",
+     "title": "Themes",
+     "url": "sources/themes-v1.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. An identifier for the knowledge organization system used. It is recommended that the identifier is a resolvable URI."
+  },
+  {
+   "name": "copernicus:storage_schemes/platform",
+   "type": "string",
+   "scope": [
+    "copernicus:storage_schemes values"
+   ],
+   "sources": [
+    {
+     "id": "storage",
+     "title": "Storage",
+     "url": "sources/storage-v2.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED.** The cloud provider where data is stored as URI or URI template to the API."
+  },
+  {
+   "name": "copernicus:storage_schemes/region",
+   "type": "string",
+   "scope": [
+    "copernicus:storage_schemes values"
+   ],
+   "sources": [
+    {
+     "id": "storage",
+     "title": "Storage",
+     "url": "sources/storage-v2.0.0.md"
+    }
+   ],
+   "desc": "The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)."
+  },
+  {
+   "name": "copernicus:storage_schemes/requester_pays",
+   "type": "boolean",
+   "scope": [
+    "copernicus:storage_schemes values"
+   ],
+   "sources": [
+    {
+     "id": "storage",
+     "title": "Storage",
+     "url": "sources/storage-v2.0.0.md"
+    }
+   ],
+   "desc": "Is the data \"requester pays\" (`true`) or is it \"data manager/cloud provider pays\" (`false`). Defaults to `false`."
+  },
+  {
+   "name": "copernicus:storage_schemes/type",
+   "type": "string",
+   "scope": [
+    "copernicus:storage_schemes values"
+   ],
+   "sources": [
+    {
+     "id": "storage",
+     "title": "Storage",
+     "url": "sources/storage-v2.0.0.md"
+    }
+   ],
+   "desc": "**REQUIRED.** Type identifier for the platform, see below."
+  },
+  {
+   "name": "copernicus:histogram/buckets",
+   "type": "array",
+   "scope": [
+    "copernicus:histogram values"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "Array of integer indicating the number of pixels included in the bucket."
+  },
+  {
+   "name": "copernicus:histogram/count",
+   "type": "number",
+   "scope": [
+    "copernicus:histogram values"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "number of buckets of the distribution."
+  },
+  {
+   "name": "copernicus:histogram/max",
+   "type": "number",
+   "scope": [
+    "copernicus:histogram values"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "minimum value of the distribution. Also the mean value of the last bucket."
+  },
+  {
+   "name": "copernicus:histogram/min",
+   "type": "number",
+   "scope": [
+    "copernicus:histogram values"
+   ],
+   "sources": [
+    {
+     "id": "raster",
+     "title": "Raster",
+     "url": "sources/raster-v2.0.0.md"
+    }
+   ],
+   "desc": "minimum value of the distribution. Also the mean value of the first bucket."
+  },
+  {
+   "name": "copernicus:expression/expression",
+   "type": "any",
+   "scope": [
+    "copernicus:expression values"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "Any data type, depending on the format chosen."
+  },
+  {
+   "name": "copernicus:expression/format",
+   "type": "string",
+   "scope": [
+    "copernicus:expression values"
+   ],
+   "sources": [
+    {
+     "id": "processing",
+     "title": "Processing",
+     "url": "sources/processing-v1.3.0.md"
+    }
+   ],
+   "desc": "**REQUIRED** The type of the expression that is specified in the `expression` property."
+  },
+  {
+   "name": "copernicus:publications/citation",
+   "type": "string",
+   "scope": [
+    "copernicus:publications values"
+   ],
+   "sources": [
+    {
+     "id": "scientific",
+     "title": "Scientific Citation",
+     "url": "sources/scientific-v1.0.0.md"
+    }
+   ],
+   "desc": "Citation of a publication referencing the data."
+  },
+  {
+   "name": "copernicus:publications/doi",
+   "type": "string",
+   "scope": [
+    "copernicus:publications values"
+   ],
+   "sources": [
+    {
+     "id": "scientific",
+     "title": "Scientific Citation",
+     "url": "sources/scientific-v1.0.0.md"
+    }
+   ],
+   "desc": "The DOI of a publication referencing the data. This MUST NOT be a DOIs link."
+  },
+  {
+   "name": "copernicus:columns/description",
+   "type": "string",
+   "scope": [
+    "copernicus:columns values"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "Detailed multi-line description to explain the dimension. CommonMark 0.29 syntax MAY be used for rich text representation."
+  },
+  {
+   "name": "copernicus:columns/name",
+   "type": "string",
+   "scope": [
+    "copernicus:columns values"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "**REQUIRED**. The column name."
+  },
+  {
+   "name": "copernicus:columns/type",
+   "type": "string",
+   "scope": [
+    "copernicus:columns values"
+   ],
+   "sources": [
+    {
+     "id": "table",
+     "title": "Table",
+     "url": "sources/table-v1.3.0.md"
+    }
+   ],
+   "desc": "Native data type of the column. If using a file format with a type system (like Parquet), we recommend you use those types."
+  }
+ ],
+ "sources": {
+  "alternate-assets": "Alternate Assets",
+  "altimetry": "Altimetry",
+  "authentication": "Authentication",
+  "cf": "Climate and Forecast (CF) Conventions",
+  "classification": "Classification",
+  "contacts": "Contacts",
+  "datacube": "Data Cube",
+  "eo": "Electro-Optical",
+  "embeddings": "Embeddings",
+  "eopf": "EOPF",
+  "grid": "Grid",
+  "order": "Order",
+  "processing": "Processing",
+  "product": "Product",
+  "projection": "Projection",
+  "raster": "Raster",
+  "region": "Region",
+  "render": "Render",
+  "sar": "Synthetic Aperture Radar",
+  "sat": "Satellite",
+  "scientific": "Scientific Citation",
+  "stats": "Stats",
+  "storage": "Storage",
+  "table": "Table",
+  "themes": "Themes",
+  "timestamps": "Timestamps",
+  "vector": "Vector",
+  "vpp": "Vegetation Phenology and Productivity",
+  "view": "View Geometry",
+  "web-map-links": "Web Map Links",
+  "xarray-assets": "Xarray Assets"
+ }
+}

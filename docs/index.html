@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copernicus STAC Extension — Field Explorer</title>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --border: #d1d9e0;
+    --header-bg: #f6f8fa; --accent: #0969da; --row-hover: #f6f8fa;
+    --code-bg: #eff1f3; --mark: #fff8c5; --mark-border: #d4a72c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px; line-height: 1.5;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 16px 64px; }
+  header h1 { font-size: 24px; margin: 0 0 4px; }
+  header p { margin: 0 0 8px; color: var(--muted); }
+  header a { color: var(--accent); text-decoration: none; }
+  header a:hover { text-decoration: underline; }
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    padding: 12px; background: var(--header-bg); border: 1px solid var(--border);
+    border-radius: 6px; margin: 16px 0;
+  }
+  .controls label { font-weight: 600; font-size: 12px; color: var(--muted); margin-right: -2px; }
+  input[type="text"], select {
+    font: inherit; padding: 5px 8px; border: 1px solid var(--border);
+    border-radius: 6px; background: var(--bg); color: var(--fg);
+  }
+  input[type="text"] { width: 260px; }
+  input[type="text"]:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+  .count { margin-left: auto; color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  thead th {
+    text-align: left; padding: 8px 12px; background: var(--header-bg);
+    border-bottom: 1px solid var(--border); font-size: 12px; position: sticky; top: 0;
+    white-space: nowrap;
+  }
+  tbody td { padding: 7px 12px; border-bottom: 1px solid #eaeef2; vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--row-hover); }
+  td.field code {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 12px; background: var(--code-bg); padding: 2px 5px; border-radius: 4px;
+    white-space: nowrap; display: inline-block;
+  }
+  code .m { background: var(--mark); border-radius: 2px; color: #1f2328; font-weight: 600; }
+  td.type { white-space: nowrap; color: var(--muted); }
+  td.scope { font-size: 12px; color: var(--muted); }
+  td.srcs a { color: var(--accent); text-decoration: none; margin-right: 6px; white-space: nowrap; }
+  td.srcs a:hover { text-decoration: underline; }
+  td.desc { color: var(--fg); max-width: 460px; }
+  .empty { text-align: center; color: var(--muted); padding: 48px 16px; font-size: 15px; }
+  .pill {
+    display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px;
+    border: 1px solid var(--border); color: var(--muted); margin: 1px 2px 1px 0; white-space: nowrap;
+  }
+  .legend { color: var(--muted); font-size: 12px; margin-top: 8px; }  kbd {
+    font-family: ui-monospace, monospace; font-size: 11px; padding: 1px 5px;
+    border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px; background: var(--header-bg);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Copernicus STAC Extension — Field Explorer</h1>
+    <p id="intro-count">Fields merged from 31 STAC extensions under the <code>copernicus:</code> prefix.
+       Part of <a href="https://github.com/j-musial/copernicus">j-musial/copernicus</a> —
+       see the <a href="https://github.com/j-musial/copernicus/blob/main/README.md">full specification</a>.</p>
+    <p class="legend">Fuzzy search: type characters in order (e.g. <kbd>clodcov</kbd> matches <code>copernicus:cloud_cover</code>).
+       <kbd>/</kbd> focuses the search box. Filters are kept in the URL for sharing.</p>
+  </header>
+
+  <div class="controls">
+    <label for="q">Field</label>
+    <input type="text" id="q" placeholder="fuzzy search fields…" autocomplete="off" spellcheck="false">
+    <label for="ext">Source extension</label>
+    <select id="ext"><option value="">All extensions</option></select>
+    <label for="scope">Scope</label>
+    <select id="scope"><option value="">All scopes</option></select>
+    <label for="dq">Description</label>
+    <input type="text" id="dq" placeholder="search descriptions…" autocomplete="off" spellcheck="false">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table aria-label="Copernicus STAC extension fields">
+      <thead>
+        <tr>
+          <th style="min-width:260px">Field</th>
+          <th>Type</th>
+          <th>Applies To</th>
+          <th>Source Extension(s)</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden>No fields match the current filters.</div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const FIELDS_URL = "fields.json";
+const $ = id => document.getElementById(id);
+const rowsEl = $("rows"), emptyEl = $("empty"), countEl = $("count");
+const qEl = $("q"), extEl = $("ext"), scopeEl = $("scope"), dqEl = $("dq");
+
+let FIELDS = [];
+let EXT_TITLES = {};
+let NESTED = [];
+
+// ---------- fuzzy subsequence matching (fzf-style) ----------
+// Returns null if no match, else {score, positions: [...indices of matched chars]}
+// Match against the field name with the 'copernicus:' prefix ignored for scoring.
+function fuzzyMatch(query, target) {
+  if (!query) return { score: 0, positions: [] };
+  const q = query.toLowerCase(), t = target.toLowerCase();
+  const qi = q.indexOf(":") >= 0 ? q : q; // allow searching with or without prefix
+  let ti = 0, positions = [], score = 0, streak = 0;
+  for (let i = 0; i < qi.length; i++) {
+    const ch = qi[i];
+    if (ch === " ") continue; // spaces are wildcards
+    const idx = t.indexOf(ch, ti);
+    if (idx < 0) return null;
+    // rank: consecutive matches and matches near start score better
+    streak = (idx === ti) ? streak + 1 : 0;
+    score += 10 + streak * 8 - Math.min(idx - ti, 10) - Math.min(idx, 15);
+    positions.push(idx);
+    ti = idx + 1;
+  }
+  return { score, positions };
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+}
+
+function highlight(name, positions) {
+  if (!positions || !positions.length) return escapeHtml(name);
+  const set = new Set(positions);
+  let out = "";
+  for (let i = 0; i < name.length; i++) {
+    out += set.has(i) ? '<span class="m">' + escapeHtml(name[i]) + "</span>" : escapeHtml(name[i]);
+  }
+  return out;
+}
+
+function renderRow(f, positions) {
+  const tr = document.createElement("tr");
+  const scope = (f.scope || []).map(s => '<span class="pill">' + escapeHtml(s) + "</span>").join(" ");
+  const srcs = (f.sources || []).map(s =>
+    '<a href="' + s.url + '" title="Harvested documentation">' + escapeHtml(s.title) + "</a>").join(" ");
+  const desc = f.desc || "";
+  tr.innerHTML =
+    '<td class="field"><code>' + highlight(f.name, positions) + "</code></td>" +
+    '<td class="type">' + escapeHtml(f.type) + "</td>" +
+    '<td class="scope">' + scope + "</td>" +
+    '<td class="srcs">' + srcs + "</td>" +
+    '<td class="desc">' + escapeHtml(desc) + "</td>";
+  return tr;
+}
+
+function applyFilters() {
+  const q = qEl.value.trim();
+  const ext = extEl.value;
+  const scope = scopeEl.value;
+  const dq = dqEl.value.trim().toLowerCase();
+
+  let results = [];
+  for (const f of FIELDS) {
+    if (ext && !(f.sources || []).some(s => s.id === ext)) continue;
+    if (scope && !(f.scope || []).includes(scope)) continue;
+    if (dq && !(f.desc || "").toLowerCase().includes(dq)) continue;
+    if (q) {
+      const m = fuzzyMatch(q, f.name);
+      if (!m) continue;
+      results.push({ f, m });
+    } else {
+      results.push({ f, m: { score: 0, positions: [] } });
+    }
+  }
+  if (q) results.sort((a, b) => b.m.score - a.m.score);
+  else results.sort((a, b) => a.f.name < b.f.name ? -1 : a.f.name > b.f.name ? 1 : 0);
+
+  const frag = document.createDocumentFragment();
+  for (const r of results) frag.appendChild(renderRow(r.f, r.m.positions));
+  rowsEl.replaceChildren(frag);
+  emptyEl.hidden = results.length > 0;
+  countEl.textContent = results.length + " / " + FIELDS.length + " fields";
+
+  // persist in URL hash
+  const params = new URLSearchParams();
+  if (q) params.set("field", q);
+  if (ext) params.set("ext", ext);
+  if (scope) params.set("scope", scope);
+  if (dq) params.set("desc", dq);
+  const hash = params.toString();
+  history.replaceState(null, "", hash ? "#" + hash : location.pathname);
+}
+
+function initControls() {
+  // extension dropdown
+  const extIds = new Map(); // id -> title
+  for (const f of FIELDS) for (const s of f.sources || []) extIds.set(s.id, s.title);
+  const sorted = [...extIds.entries()].sort((a, b) => a[1].localeCompare(b[1]));
+  for (const [id, title] of sorted) {
+    const o = document.createElement("option");
+    o.value = id; o.textContent = title + " (" + id + ")";
+    extEl.appendChild(o);
+  }
+  // scope dropdown
+  const scopes = new Set();
+  for (const f of FIELDS) for (const s of f.scope || []) scopes.add(s);
+  for (const s of [...scopes].sort()) {
+    const o = document.createElement("option");
+    o.value = s; o.textContent = s;
+    scopeEl.appendChild(o);
+  }
+  // restore from URL hash
+  const params = new URLSearchParams(location.hash.slice(1));
+  if (params.get("field")) qEl.value = params.get("field");
+  if (params.get("ext")) extEl.value = params.get("ext");
+  if (params.get("scope")) scopeEl.value = params.get("scope");
+  if (params.get("desc")) dqEl.value = params.get("desc");
+
+  let deb;
+  const onChange = () => { clearTimeout(deb); deb = setTimeout(applyFilters, 60); };
+  qEl.addEventListener("input", onChange);
+  dqEl.addEventListener("input", onChange);
+  extEl.addEventListener("change", applyFilters);
+  scopeEl.addEventListener("change", applyFilters);
+  document.addEventListener("keydown", e => {
+    if (e.key === "/" && document.activeElement !== qEl && document.activeElement !== dqEl) {
+      e.preventDefault(); qEl.focus();
+    }
+  });
+}
+
+fetch(FIELDS_URL)
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    FIELDS = data.fields || [];
+    EXT_TITLES = data.sources || {};
+    const nTop = FIELDS.filter(f => !f.name.includes('/')).length;
+    const intro = document.getElementById('intro-count');
+    if (intro) {
+      intro.firstChild.textContent = nTop + " fields (" + FIELDS.length +
+        " incl. nested object fields) merged from 31 STAC extensions under the ";
+    }
+    initControls();
+    applyFilters();
+  })
+  .catch(err => {
+    emptyEl.hidden = false;
+    emptyEl.textContent = "Failed to load fields.json: " + err;
+  });
+</script>
+</body>
+</html>
